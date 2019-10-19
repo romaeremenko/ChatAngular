@@ -1,0 +1,102 @@
+p, div {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Saira', sans-serif;
+}
+
+.sairaRegular18 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.sairaLight14 {
+  font-size: .8em;
+  font-weight: 300;
+  color: rgba(0, 0, 0, .54);
+}
+
+.alignCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alignLeft {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.marginName {
+  margin-left: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.scroll {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: rgba(0, 0, 0, .1);
+}
+
+.containerForAvatar {
+  margin: 5px;
+}
+
+.containerForProfile {
+  display: flex;
+  overflow: hidden;
+}
+
+.avatarProfileTabs {
+  background: #EED8D8;
+}
+
+.avatar {
+  position: relative;
+  max-width: 60px;
+  min-width: 60px;
+  max-height: 60px;
+  min-height: 60px;
+  -webkit-border-radius: 38px;
+  -moz-border-radius: 38px;
+  border-radius: 38px;
+  background: #EED8D8;
+}
+
+.containerName {
+  max-width: 176px;
+  min-width: 176px;
+  display: inline-flex;
+}
+
+.name {
+  margin-left: 1%;
+  font-size: .8em;
+  color: #000000;
+}
+
+.marginName {
+  margin-left: 5px;
+}
+
+.online {
+  color: #FF8000;
+}

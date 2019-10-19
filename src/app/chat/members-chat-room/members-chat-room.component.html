@@ -1,0 +1,21 @@
+<div class="members">
+  <div class="chatNameHeader alignCenter">
+    <div class="chatName sairaRegular18">
+      УЧАСТНИКИ
+    </div>
+    <div class="onlineMembers sairaRegular18"> {{countOnlineMembers()}} В СЕТИ
+    </div>
+  </div>
+  <div class="chatMembers scroll">
+
+    <div class="alignCenter" *ngFor="let member of members">
+      <div class="containerForProfile alignCenter">
+        <div class="containerForAvatar alignCenter">
+          <div class="avatar avatarProfileTab"></div>
+        </div>
+        <div class="containerName marginName name sairaRegular18" [class.online]="member.status">{{member.username}}</div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,106 @@
+.header {
+  display: flex;
+  min-height: 75px;
+  max-height: 76px;
+  background: url("../../images/logo.svg") #FFB800 no-repeat center;
+  filter: drop-shadow(4px 0px 4px hsl(0, 0%, 60%));
+}
+
+.account {
+  margin-left: auto;
+  min-width: 20%;
+  max-width: 20%;
+  background: #FFA528;
+}
+
+.onlineTime {
+  margin-right: 1%;
+  margin-left: auto;
+}
+
+.containerForProfile {
+  display: flex;
+  overflow: hidden;
+}
+
+.containerForAvatar {
+  margin: 5px;
+}
+
+.avatar {
+  position: relative;
+  max-width: 60px;
+  min-width: 60px;
+  max-height: 60px;
+  min-height: 60px;
+  -webkit-border-radius: 38px;
+  -moz-border-radius: 38px;
+  border-radius: 38px;
+  background: #EED8D8;
+}
+
+.avatarProfile {
+  background: #744343;
+}
+
+.exit {
+  z-index: 2;
+  top: 0;
+  right: 0;
+  position: absolute;
+  max-width: 26px;
+  min-width: 30px;
+  max-height: 26px;
+  min-height: 30px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  border-radius: 18px;
+  background:url("../../images/exit.png") #ee5234;
+  border: none;
+  background-size: contain;
+  outline: none;
+}
+
+
+.containerForInfo {
+  max-width: 176px;
+  min-width: 176px;
+  margin: auto 0;
+}
+
+.containerName {
+  max-width: 176px;
+  min-width: 176px;
+  display: inline-flex;
+}
+
+.name {
+  margin-left: 1%;
+  font-size: .8em;
+  color: #000000;
+}
+
+.changeInfo {
+  max-width: 176px;
+  min-width: 176px;
+  max-height: 23px;
+  min-height: 23px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background: #F17373;
+}
+
+.globalTime {
+  min-width: 5%;
+  max-width: 5%;
+  background: #FF6200;
+  color: #FFFFFF;
+  overflow: hidden;
+}
+
+.alignCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

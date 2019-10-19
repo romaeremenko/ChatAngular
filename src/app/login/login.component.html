@@ -1,0 +1,11 @@
+<div class="bg-modal">
+  <div class="modal-content">
+    <div class="header-modal">Войдите</div>
+    <form action="">
+      <input type="text" [(ngModel)]="auth.loginField" [ngModelOptions]="{standalone: true}" class="inputname" placeholder="Имя Фамилия" id="uname">
+      <button type="button" (click)="auth.login()">Вход</button>
+      <button type="button" id="buttonReg">Регистрация</button>
+      <p id="check"></p>
+    </form>
+  </div>
+</div>
