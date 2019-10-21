@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {map, switchMap} from 'rxjs/operators';
+import {catchError, filter, map, switchMap} from 'rxjs/operators';
 import {User} from '../../interface/chat/users';
+import {ChatResponce} from '../../interface/server/responce';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +25,18 @@ export class ChatAPIService {
   constructor(private http: HttpClient) {
   }
 
-  isExist(loginField: string): Observable<boolean> {
-    return this.chat.pipe(map((resp: User[]) => this.includeName(resp, loginField)));
+  isExist(loginField: string, passwordField: string): Observable<ChatResponce> | Observable<object> {
+    return this.http.post(this.loginUrl, {username: loginField, password: passwordField});
   }
 
   getMembers(): Observable<any> {
     return this.chat;
+  }
+
+  registration(loginField: string, passwordField: string): Observable<any> {
+    return this.http.post(this.regUrl, {username: loginField, password: passwordField}).pipe(
+      catchError(err => of(false))
+    );
   }
 
 }

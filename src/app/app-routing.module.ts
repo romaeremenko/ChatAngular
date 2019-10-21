@@ -7,9 +7,8 @@ import { RegistrationComponent } from './login/registration/registration.compone
 import {AuthGuard} from './auth.guard';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent, children: [
-      {path: 'registration', component: RegistrationComponent},
-    ]},
+  {path: 'login', component: LoginComponent},
+  {path: 'registration', component: RegistrationComponent},
   {path: '', component: ChatComponent, canActivate: [AuthGuard]},
   {path: 'chatroom', component: ChatComponent, canActivate: [AuthGuard]},
 ];

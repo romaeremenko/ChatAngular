@@ -8,12 +8,10 @@
   </div>
   <div class="chatMembers scroll">
 
-    <div class="alignCenter" *ngFor="let member of members">
+    <div class="alignCenter" *ngFor="let member of asd | async | sortByStatus">
       <div class="containerForProfile alignCenter">
-        <div class="containerForAvatar alignCenter">
-          <div class="avatar avatarProfileTab"></div>
-        </div>
-        <div class="containerName marginName name sairaRegular18" [class.online]="member.status">{{member.username}}</div>
+        <app-avatar></app-avatar>
+        <div [class]="this.titleStyle" [class.online]="member.status">{{member.username }}</div>
       </div>
     </div>
 

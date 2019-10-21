@@ -14,6 +14,9 @@ import {HeaderChatRoomComponent} from './chat/header-chat-room/header-chat-room.
 import {LogsChatRoomComponent} from './chat/logs-chat-room/logs-chat-room.component';
 import {MessagesChatRoomComponent} from './chat/messages-chat-room/messages-chat-room.component';
 import {MembersChatRoomComponent} from './chat/members-chat-room/members-chat-room.component';
+import { AvatarComponent } from './chat/share/avatar/avatar.component';
+import {ChatMembersService} from './service/chatMembers/chat-members.service';
+import {SortByStatusPipe} from './pipe/sort-by-status.pipe';
 
 
 @NgModule({
@@ -26,6 +29,8 @@ import {MembersChatRoomComponent} from './chat/members-chat-room/members-chat-ro
     LogsChatRoomComponent,
     MessagesChatRoomComponent,
     MembersChatRoomComponent,
+    AvatarComponent,
+    SortByStatusPipe,
   ],
   imports: [
     HttpClientModule,
@@ -35,7 +40,8 @@ import {MembersChatRoomComponent} from './chat/members-chat-room/members-chat-ro
   ],
   providers: [
     AuthGuard,
-    ChatAPIService
+    ChatAPIService,
+    ChatMembersService
   ],
   bootstrap: [AppComponent]
 })

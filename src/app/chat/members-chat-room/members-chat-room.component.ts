@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {ChatAPIService} from '../../service/chatAPI/chat-api.service';
 import {Member} from '../../interface/chat/member';
+import {User} from '../../interface/chat/users';
+import {ChatMembersService} from '../../service/chatMembers/chat-members.service';
 
 @Component({
   selector: 'app-members-chat-room',
@@ -9,23 +11,21 @@ import {Member} from '../../interface/chat/member';
 })
 export class MembersChatRoomComponent implements OnInit {
 
-  members: Member[] = [];
+  asd = ChatMembersService.members;
+  titleStyle = `containerName marginName name sairaRegular18`;
 
   constructor(private chat: ChatAPIService) {
   }
 
   ngOnInit() {
-    this.chat.getMembers().subscribe(resp => {
-        resp.forEach(r => {
-          this.members.push({username: r.username, status: r.status === 'active' ? true : false});
-        });
-        console.log(this.members);
-      }
-    );
+    this.chatMembers.getMembers();
+    ChatMembersService.members.subscribe(members => {
+      //console.log(members);
+    });
   }
 
-  countOnlineMembers(): number {
-    return this.members.filter(member => member.status).length;
+  countOnlineMembers(): void {
+    return this.elRef.nativeElement.querySelectorAll('.online').length;
   }
 
 }

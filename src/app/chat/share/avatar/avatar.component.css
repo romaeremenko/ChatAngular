@@ -1,0 +1,25 @@
+.containerForAvatar {
+  margin: 5px;
+}
+
+.avatarProfileTabs {
+  background: #EED8D8;
+}
+
+.avatar {
+  position: relative;
+  max-width: 60px;
+  min-width: 60px;
+  max-height: 60px;
+  min-height: 60px;
+  -webkit-border-radius: 38px;
+  -moz-border-radius: 38px;
+  border-radius: 38px;
+  background: #EED8D8;
+}
+
+.alignCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

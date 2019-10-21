@@ -56,31 +56,6 @@ a {
   background: rgba(0, 0, 0, .1);
 }
 
-.containerForAvatar {
-  margin: 5px;
-}
-
-.containerForProfile {
-  display: flex;
-  overflow: hidden;
-}
-
-.avatarProfileTabs {
-  background: #EED8D8;
-}
-
-.avatar {
-  position: relative;
-  max-width: 60px;
-  min-width: 60px;
-  max-height: 60px;
-  min-height: 60px;
-  -webkit-border-radius: 38px;
-  -moz-border-radius: 38px;
-  border-radius: 38px;
-  background: #EED8D8;
-}
-
 .containerName {
   max-width: 176px;
   min-width: 176px;
