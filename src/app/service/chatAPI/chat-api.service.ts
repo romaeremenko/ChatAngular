@@ -11,17 +11,34 @@ import {Message} from '../../interface/chat/message';
 })
 export class ChatAPIService {
 
-  private chat = this.http.get<User[]>('https://studentschat.herokuapp.com/users/');
+  // порядок:
+  // public
+  // private
+  // constructor
+  // public
+  // private
 
-  user: User;
+  user: User = {
+    user_id: '',
+    username: ''
+  };
+  private chatUsers = this.http.get<User[]>('https://studentschat.herokuapp.com/users/');
+  private chatMessages = this.http.get<Message[]> ('https://studentschat.herokuapp.com/messages/');
+  private loginUrl = 'https://studentschat.herokuapp.com/users/login';
+  private regUrl = 'https://studentschat.herokuapp.com/users/register';
 
-  private includeName(resp: User[], loginField: string): boolean {
-    resp = resp.filter((member: User) => member.username === loginField);
-    if (resp.length) {
-      this.user = resp[0];
-    }
-    return !!resp.length;
-  }
+  // Добавил запрос для логина /users/login
+  // формат запроса
+  // {
+  //    username: string
+  // }
+  //
+  // формат  успешного ответа
+  //
+  // {
+  //    status: "ok"
+  // }
+  //
 
   constructor(private http: HttpClient) {
   }

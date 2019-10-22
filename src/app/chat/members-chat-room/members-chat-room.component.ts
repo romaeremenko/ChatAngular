@@ -14,7 +14,7 @@ export class MembersChatRoomComponent implements OnInit {
   members = ChatMembersService.members;
   titleStyle = `containerName marginName name sairaRegular18`;
 
-  constructor(private chat: ChatAPIService) {
+  constructor(private chatMembersService: ChatMembersService, private elRef: ElementRef) { // chat -> chatAPIService
   }
 
   ngOnInit() {

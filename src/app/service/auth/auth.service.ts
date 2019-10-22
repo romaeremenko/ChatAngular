@@ -43,7 +43,7 @@ export class AuthService {
       // this.redirectTo(this.linkChatroom);
       return of(this.isAuth);
     } else {
-      this.router.navigate(['/login']);
+      this.redirectTo(this.linkLogin);
       return of(this.isAuth);
     }
   }
