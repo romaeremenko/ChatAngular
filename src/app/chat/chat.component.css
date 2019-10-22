@@ -63,7 +63,7 @@ a {
 }
 
 .name {
-  margin-left: 1%;
+  /*margin-left: 1%;*/
   font-size: .8em;
   color: #000000;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../service/auth/auth.service';
 import {Router} from '@angular/router';
 
@@ -7,11 +7,12 @@ import {Router} from '@angular/router';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
 
-  constructor(private auth: AuthService,  private router: Router) { }
-
-  ngOnInit() {
+  constructor(private authService: AuthService, private router: Router) {
+    if (authService.isAuth) {
+      router.navigate(['/chatroom']);
+    }
   }
 
   redirectLogin() {

@@ -1,8 +1,35 @@
 .chatForm {
-  min-width: 50%;
-  max-width: 50%;
+  width: 190vh;
   height: 100vh;
   position: relative;
   box-shadow: inset 0px 0px 5px hsl(0, 0%, 80%);
   background: linear-gradient(to bottom, #FFF, #FFE43C);
+}
+
+.chatHeader {
+  display: inline-flex;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  color: #000000;
+  height: 25px;
+  width: 100%;
+  background-color: #EED8D8;
+}
+
+.chatName {
+  position: absolute;
+  margin: auto;
+}
+
+.chatLogs {
+  background: linear-gradient(to bottom, rgba(255, 191, 27, .13), rgba(253, 203, 74, 1));
+  height: 75vh;
+  margin-top: 25px;
+}
+
+.inputMessageBox {
+  justify-content: center;
+  background: #D3D2D2;
+  height: 25%;
 }

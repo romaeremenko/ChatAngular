@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ChatAPIService} from '../chatAPI/chat-api.service';
-import {Member} from '../../interface/chat/member';
 import {BehaviorSubject, interval, Observable, Subject} from 'rxjs';
-import {timeInterval} from 'rxjs/operators';
+import {User} from '../../interface/chat/users';
+import {Member} from '../../interface/chat/member';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class ChatMembersService {
 
   public getMembers() {
     interval(1000).subscribe( _ => {
-      this.chatAPIService.getMembers().subscribe(members => {
+      this.chatAPIService.getMembers().subscribe((members) => {
         ChatMembersService.members.next(this.transormMember(members));
       });
     });

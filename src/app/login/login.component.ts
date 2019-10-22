@@ -7,15 +7,19 @@ import {Router} from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  constructor(private auth: AuthService, private router: Router) {
-  }
-
-  ngOnInit() {
+  constructor(private authService: AuthService, private router: Router) {
+    if (authService.isAuth) {
+      router.navigate(['/chatroom']);
+    }
   }
 
   redirectReg() {
     this.router.navigate(['/registration']);
+  }
+
+  isChatRouteActivated() {
+    this.router.navigate(['/chatroom']);
   }
 }

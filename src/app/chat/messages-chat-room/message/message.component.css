@@ -1,0 +1,62 @@
+.chatMessage {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 2% 5%;
+}
+
+.chatMessage p {
+  padding: 2%;
+  /* padding: 10px; */
+}
+
+.chatAvatar {
+  width: 9vh;
+  height: 9vh;
+  border-radius: 50%;
+  margin: 1%;
+  background-color: #F28E8E;
+}
+
+.boxForMessage {
+  width: 90%;
+  margin: auto 0;
+}
+
+.messageText {
+  width: 90%;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background: #FFFFFF;
+}
+
+.boxForMessage .name {
+  padding: 2% 2% 0 2%;
+  /* padding: 10px 0 0 10px; */
+}
+
+.boxForMessage .timeMessage {
+  font-size: .6em;
+  padding: 1vh 0 0 3vh;
+}
+
+.alignMessage {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.dateMessage {
+  width: 12%;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  margin: auto;
+  margin-top: 1vh;
+  border-radius: 10px;
+  background: #F17373;
+}
+
+.dateMessage p {
+  text-align: center;
+}
+

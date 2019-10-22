@@ -11,17 +11,17 @@ import {ChatMembersService} from '../../service/chatMembers/chat-members.service
 })
 export class MembersChatRoomComponent implements OnInit {
 
-  asd = ChatMembersService.members;
+  members = ChatMembersService.members;
   titleStyle = `containerName marginName name sairaRegular18`;
 
   constructor(private chat: ChatAPIService) {
   }
 
   ngOnInit() {
-    this.chatMembers.getMembers();
-    ChatMembersService.members.subscribe(members => {
-      //console.log(members);
-    });
+    this.chatMembersService.getMembers();
+    // ChatMembersService.members.subscribe(members => {
+    //   //console.log(members);
+    // });
   }
 
   countOnlineMembers(): void {

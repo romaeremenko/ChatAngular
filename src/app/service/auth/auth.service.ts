@@ -3,7 +3,7 @@ import {Observable, of} from 'rxjs';
 import {Router} from '@angular/router';
 import {ChatAPIService} from '../chatAPI/chat-api.service';
 import {User} from '../../interface/chat/users';
-import {ChatResponce} from '../../interface/server/responce';
+import {UserResponce} from '../../interface/server/userResponce';
 
 @Injectable({
   providedIn: 'root'
@@ -12,24 +12,20 @@ export class AuthService {
 
   private loginField = 'loans';
   private passwordField = '132';
-  private isAuth = false;
   private linkLogin = '/login';
   private linkChatroom = '/chatroom';
+  public isAuth = true;
 
   constructor(private router: Router, private сhatAPIService: ChatAPIService) {
   }
 
   login() {
-    this.сhatAPIService.isExist(this.loginField, this.passwordField).subscribe((resp: ChatResponce) => {
+    this.сhatAPIService.isExist(this.loginField, this.passwordField).subscribe((resp: UserResponce) => {
       this.getUsernameAndId(resp);
       this.isAuth = (resp.status === 'ok');
       this.redirectTo(this.linkChatroom);
     });
 
-  }
-
-  logout() {
-    this.isAuth = false;
   }
 
   registration() {
@@ -44,7 +40,7 @@ export class AuthService {
 
   isAutenticated(): Observable<boolean> {
     if (this.isAuth) {
-      this.redirectTo(this.linkChatroom);
+      // this.redirectTo(this.linkChatroom);
       return of(this.isAuth);
     } else {
       this.router.navigate(['/login']);

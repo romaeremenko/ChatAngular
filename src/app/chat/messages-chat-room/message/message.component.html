@@ -1,0 +1,16 @@
+<!--<div [style.display]="dateService.compareDate(messageFromUser.datetime)==true?'block':'none'" class="dateMessage alignCenter sairaLight14">-->
+  <!--<p>{{messageFromUser.datetime | date: 'yyyy-MM-dd'}}</p>-->
+<!--</div>-->
+<div *ngIf="newDate" class="dateMessage alignCenter sairaLight14">
+  <p>{{newDate}}</p>
+</div>
+<div class="chatMessage alignMessage">
+  <div class="chatAvatar"></div>
+  <div class="boxForMessage">
+    <div class="messageText sairaLight14">
+      <div class="name sairaRegular18">{{messageFromUser.user_id}}</div>
+      <p>{{messageFromUser.message}}</p>
+    </div>
+    <div class="timeMessage sairaLight14">{{messageFromUser.datetime | date: 'HH:mm' : '-00'}}</div>
+  </div>
+</div>

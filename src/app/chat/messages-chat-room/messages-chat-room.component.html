@@ -1,51 +1,16 @@
 <div class="chatForm">
-  <!--<div class="chatHeader alignCenter">-->
-    <!--<div id="headerNameChat" data-headerName="MAIN" class="chatName sairaRegular18">-->
-      <!--MAIN-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div id="messages">-->
-    <!--<div id="parentMessages" data-chatID="MAIN" class="chatLogs scroll"></div>-->
-  <!--</div>-->
-  <!--<div class="inputMessageBox">-->
-    <!--<div class="inputMessage">-->
-      <!--<form name="message" method="post">-->
-        <!--<input id="text" type="text" placeholder="Написать сообщение...">-->
-        <!--<input id="sendIcon" class="send" type="button">-->
-      <!--</form>-->
-    <!--</div>-->
-    <!--<div class="editing">-->
-      <!--<form>-->
-        <!--<input id="boldIcon" class="bold" type="button">-->
-        <!--<input id="italicIcon" class="italic" type="button">-->
-        <!--<input id="underlineIcon" class="underline" type="button">-->
-      <!--</form>-->
-      <!--<ul class="characters sairaLightCharacters">-->
-        <!--<li>-->
-          <!--Знаков препинания:-->
-        <!--</li>-->
-        <!--<li id="punctuationMarks" class="info">-->
-          <!--0-->
-        <!--</li>-->
-        <!--<li>-->
-          <!--Невидимых символов:-->
-        <!--</li>-->
-        <!--<li id="spaces" class="info">-->
-          <!--0-->
-        <!--</li>-->
-        <!--<li>-->
-          <!--Букв:-->
-        <!--</li>-->
-        <!--<li id="letters" class="info">-->
-          <!--0-->
-        <!--</li>-->
-        <!--<li>-->
-          <!--Символов:-->
-        <!--</li>-->
-        <!--<li id="symbols" class="info">-->
-          <!--0-->
-        <!--</li>-->
-      <!--</ul>-->
-    <!--</div>-->
-  <!--</div>-->
+  <div class="chatHeader alignCenter">
+    <div class="chatName sairaRegular18">
+      MAIN
+    </div>
+  </div>
+
+  <div id="messages">
+    <div class="chatLogs scroll">
+      <div *ngFor="let message of messages | async">
+        <app-message [messageFromUser] = "message"></app-message>
+      </div>
+    </div>
+  </div>
+
 </div>
