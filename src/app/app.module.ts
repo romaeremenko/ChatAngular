@@ -20,7 +20,7 @@ import {SortByStatusPipe} from './pipe/sort-by-status.pipe';
 import { MessageComponent } from './chat/messages-chat-room/message/message.component';
 import {ChatMessagesService} from './service/chatMessages/chat-messages.service';
 import {DateService} from './service/date/date.service';
-import { InputMessageComponent } from './chat/messages-chat-room/inputMessage/input-message/input-message.component';
+import {InputMessageComponent} from './chat/messages-chat-room/input-message/input-message.component';
 
 
 @NgModule({
