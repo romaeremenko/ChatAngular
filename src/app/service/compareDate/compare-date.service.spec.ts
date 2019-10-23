@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DateService } from './date.service';
+import { CompareDate } from './compare-date.service';
 
-describe('DateService', () => {
+describe('CompareDate', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DateService = TestBed.get(DateService);
+    const service: CompareDate = TestBed.get(CompareDate);
     expect(service).toBeTruthy();
   });
 });

@@ -19,8 +19,9 @@ import {ChatMembersService} from './service/chatMembers/chat-members.service';
 import {SortByStatusPipe} from './pipe/sort-by-status.pipe';
 import { MessageComponent } from './chat/messages-chat-room/message/message.component';
 import {ChatMessagesService} from './service/chatMessages/chat-messages.service';
-import {DateService} from './service/date/date.service';
+import {CompareDate} from './service/compareDate/compare-date.service';
 import {InputMessageComponent} from './chat/messages-chat-room/input-message/input-message.component';
+import {InputMessageService} from './service/inputMessage/input-message.service';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {InputMessageComponent} from './chat/messages-chat-room/input-message/inp
     ChatAPIService,
     ChatMembersService,
     ChatMessagesService,
-    DateService
+    CompareDate,
+    InputMessageService
   ],
   bootstrap: [AppComponent]
 })

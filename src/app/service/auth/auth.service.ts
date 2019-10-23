@@ -11,10 +11,10 @@ import {UserResponce} from '../../interface/server/userResponce';
 export class AuthService {
 
   private loginField = 'loans';
-  private passwordField = '132';
+  private passwordField = '1234';
   private linkLogin = '/login';
   private linkChatroom = '/chatroom';
-  public isAuth = true;
+  public isAuth = false;
 
   constructor(private router: Router, private сhatAPIService: ChatAPIService) {
   }

@@ -23,14 +23,15 @@ export class ChatAPIService {
     username: ''
   };
   private chatUsers = this.http.get<User[]>('https://studentschat.herokuapp.com/users/');
-  private chatMessages = this.http.get<Message[]> ('https://studentschat.herokuapp.com/messages/');
+  private chatMessagesGet = this.http.get<Message[]> ('https://studentschat.herokuapp.com/messages/');
   private loginUrl = 'https://studentschat.herokuapp.com/users/login';
   private regUrl = 'https://studentschat.herokuapp.com/users/register';
+  private chatMessagesPost = 'https://studentschat.herokuapp.com/messages';
 
   // Добавил запрос для логина /users/login
   // формат запроса
   // {
-  //    username: string
+  //    username: inputMessage
   // }
   //
   // формат  успешного ответа
@@ -47,12 +48,20 @@ export class ChatAPIService {
     return this.http.post(this.loginUrl, {username: loginField, password: passwordField});
   }
 
+  sendMessage(inputMessage: string): Observable<UserResponce> | Observable<object> {
+    return this.http.post(this.chatMessagesPost, {
+      datetime: new Date().toISOString(),
+      message: inputMessage,
+      username: this.user.username,
+    });
+  }
+
   getMembers(): Observable<any> {
     return this.chatUsers;
   }
 
   getMessages(): Observable<any> {
-    return this.chatMessages;
+    return this.chatMessagesGet;
   }
 
   registration(loginField: string, passwordField: string): Observable<any> {

@@ -1,5 +1,5 @@
 .chatForm {
-  width: 190vh;
+  width: 115vh;
   height: 100vh;
   position: relative;
   box-shadow: inset 0px 0px 5px hsl(0, 0%, 80%);
@@ -24,12 +24,6 @@
 
 .chatLogs {
   background: linear-gradient(to bottom, rgba(255, 191, 27, .13), rgba(253, 203, 74, 1));
-  height: 75vh;
+  height: 70vh;
   margin-top: 25px;
-}
-
-.inputMessageBox {
-  justify-content: center;
-  background: #D3D2D2;
-  height: 25%;
 }
