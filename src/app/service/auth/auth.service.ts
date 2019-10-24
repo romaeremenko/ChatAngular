@@ -13,7 +13,7 @@ export class AuthService {
   private loginField = 'loans';
   private passwordField = '1234';
   private linkLogin = '/login';
-  private linkChatroom = '/chatroom';
+  private linkChatroom = '/chatroom/MAIN';
   public isAuth = false;
 
   constructor(private router: Router, private сhatAPIService: ChatAPIService) {

@@ -1,13 +1,14 @@
 import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {ChatAPIService} from '../../../service/chatAPI/chat-api.service';
 import {InputMessageService} from '../../../service/inputMessage/input-message.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-input-message',
   templateUrl: './input-message.component.html',
   styleUrls: ['./input-message.component.css']
 })
-export class InputMessageComponent {
+export class InputMessageComponent implements OnInit {
 
   inputMessage: string;
   bold = {startTag: '<strong>', endTag: '</strong>'};
@@ -24,7 +25,13 @@ export class InputMessageComponent {
     this.stringService.updateStringInfo(this.inputMessage);
   }
 
-  constructor(private chatAPIService: ChatAPIService, private stringService: InputMessageService) {
+  constructor(private chatAPIService: ChatAPIService, private stringService: InputMessageService, private route: ActivatedRoute,) {
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe(_ => {
+      this.inputMessage = null;
+    });
   }
 
   sendMessage() {

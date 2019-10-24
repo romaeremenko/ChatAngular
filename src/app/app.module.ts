@@ -23,6 +23,8 @@ import {CompareDate} from './service/compareDate/compare-date.service';
 import {InputMessageComponent} from './chat/messages-chat-room/input-message/input-message.component';
 import {InputMessageService} from './service/inputMessage/input-message.service';
 
+import { AngularResizedEventModule } from 'angular-resize-event';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import {InputMessageService} from './service/inputMessage/input-message.service'
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AngularResizedEventModule
   ],
   providers: [
     AuthGuard,

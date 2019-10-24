@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: '', component: ChatComponent, canActivate: [AuthGuard]},
-  {path: 'chatroom', component: ChatComponent, canActivate: [AuthGuard]},
+  {path: 'chatroom/:id', component: ChatComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

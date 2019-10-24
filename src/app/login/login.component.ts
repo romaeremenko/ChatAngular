@@ -11,7 +11,7 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {
     if (authService.isAuth) {
-      router.navigate(['/chatroom']);
+      router.navigate(['/chatroom/MAIN']);
     }
   }
 

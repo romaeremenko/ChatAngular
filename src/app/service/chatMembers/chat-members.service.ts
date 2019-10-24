@@ -3,6 +3,7 @@ import {ChatAPIService} from '../chatAPI/chat-api.service';
 import {BehaviorSubject, interval, Observable, Subject} from 'rxjs';
 import {User} from '../../interface/chat/users';
 import {Member} from '../../interface/chat/member';
+import {ChatMessagesService} from '../chatMessages/chat-messages.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,18 @@ import {Member} from '../../interface/chat/member';
 export class ChatMembersService {
 
   static members = new BehaviorSubject([]);
+  static membersLength = 0;
 
   constructor(private chatAPIService: ChatAPIService) {
   }
 
   public getMembers() {
-    interval(1000).subscribe( _ => {
+    return interval(5000).subscribe( _ => {
       this.chatAPIService.getMembers().subscribe((members) => {
+        console.log(members);
+        if (ChatMembersService.membersLength !== members.length) {
         ChatMembersService.members.next(this.transormMember(members));
-      });
+      }});
     });
   }
 

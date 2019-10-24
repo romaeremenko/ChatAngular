@@ -16,7 +16,7 @@ export class InputMessageService {
   }
 
   private isConsistent(input: string, event): boolean {
-    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft' || event.key === 'Backspace') {
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft' || event.key === 'Backspace' || input === null) {
       return false;
     } else if (input !== undefined) {
       return input.replace(/<[^>]+>/gm, '').length >= 500;
@@ -30,9 +30,12 @@ export class InputMessageService {
     }
   }
 
-  updateStringInfo(input: string = ''): void {
+  updateStringInfo(input: string): void {
+    if (!input) {
+      return;
+    }
     const numbersAmount = input.length - input.replace(/[0-9]/g, '').length;
-    input =  input.replace(/<[^>]+>/gm, '');
+    input = input.replace(/<[^>]+>/gm, '');
     this.punctuationMarksAmount = input.length - input.replace(/[.,+@\/#!$%\^&\*"'`;?:{}=\-_`~()]/g, '').length;
     this.spacesAmount = input.length - input.replace(/\s+/g, '').length;
     this.lettersAmount = input.length - this.spacesAmount - this.punctuationMarksAmount - numbersAmount;
@@ -45,8 +48,8 @@ export class InputMessageService {
     console.log(this.selection);
   }
 
-  convert(input: string, { startTag, endTag }, start: number = this.selection.start, end: number = this.selection.end) {
-      return input.substring(0, start) + startTag + input.substring(start, end) + endTag + input.substring(end);
+  convert(input: string, {startTag, endTag}, start: number = this.selection.start, end: number = this.selection.end) {
+    return input.substring(0, start) + startTag + input.substring(start, end) + endTag + input.substring(end);
   }
 
   reset() {

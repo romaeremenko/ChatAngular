@@ -75,3 +75,8 @@ a {
 .online {
   color: #FF8000;
 }
+
+*:focus {
+  outline: 0;
+  outline: none;
+}

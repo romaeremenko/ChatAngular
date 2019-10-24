@@ -6,10 +6,16 @@
     </div>
     <div id="chatRooms" class="chats scroll">
 
-      <div class="alignLeft active" data-chatRoomUserID="MAIN">
+      <div [routerLink]="['../MAIN']" class="alignLeft chatRoom active">
         <div class="containerForProfile alignCenter">
           <app-avatar></app-avatar>
           <div [class]="this.titleStyle">MAIN</div>
+        </div>
+      </div>
+      <div [routerLink]="['../1']" class="alignLeft chatRoom">
+        <div class="containerForProfile alignCenter">
+          <app-avatar></app-avatar>
+          <div [class]="this.titleStyle">1</div>
         </div>
       </div>
 
@@ -17,3 +23,5 @@
       <div id="emptyRoom" class="containerForAvatar"></div>
     </div>
   </div>
+  <router-outlet></router-outlet>
+
