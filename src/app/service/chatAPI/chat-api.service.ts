@@ -5,6 +5,8 @@ import {catchError} from 'rxjs/operators';
 import {User} from '../../interface/chat/users';
 import {UserResponce} from '../../interface/server/userResponce';
 import {Message} from '../../interface/chat/message';
+import {ChatroomsResponce} from '../../interface/server/chatroomsResponce';
+import {Chatroom} from '../../interface/chat/chatroom';
 
 @Injectable({
   providedIn: 'root'
@@ -24,9 +26,12 @@ export class ChatAPIService {
   };
   private chatUsers = this.http.get<User[]>('https://studentschat.herokuapp.com/users/');
   private chatMessagesGet = 'https://studentschat.herokuapp.com/messages?chatroom_id=';
+  private chatRoomsGet = 'https://studentschat.herokuapp.com/chatroom?username='
   private loginUrl = 'https://studentschat.herokuapp.com/users/login';
   private regUrl = 'https://studentschat.herokuapp.com/users/register';
   private chatMessagesPost = 'https://studentschat.herokuapp.com/messages';
+  private chatRoomPost = 'https://studentschat.herokuapp.com/chatroom';
+  private logoutUrl = 'https://studentschat.herokuapp.com/users/logout';
   private currentRoom;
 
   // Добавил запрос для логина /users/login
@@ -49,14 +54,36 @@ export class ChatAPIService {
     return this.http.post(this.loginUrl, {username: loginField, password: passwordField});
   }
 
+  logout(): Observable<object> {
+    return this.http.post(this.logoutUrl, {username: this.user.username});
+  }
+
   sendMessage(inputMessage: string): Observable<object> {
     console.log(this.currentRoom);
-    return this.http.post(this.chatMessagesPost, {
+
+    const postRequest: Message = {
       datetime: new Date().toISOString(),
       message: inputMessage,
       username: this.user.username,
-      // chatroom_id: this.currentRoom
-    });
+    };
+
+    if (this.currentRoom !== 'MAIN') {
+      postRequest.chatroom_id = this.currentRoom;
+    }
+
+    return this.http.post(this.chatMessagesPost, postRequest);
+  }
+
+  createChatRoom(inviteUserId: string, chatName: string): Observable<object> {
+    console.log(this.user.username, inviteUserId, chatName);
+
+    const postRequest: Chatroom = {
+      owner: this.user.username,
+      invitees: inviteUserId,
+      name: chatName
+    };
+
+    return this.http.post(this.chatRoomPost, postRequest);
   }
 
   getMembers(): Observable<any> {
@@ -66,6 +93,10 @@ export class ChatAPIService {
   getMessages(id): Observable<any> {
     this.currentRoom = id;
     return this.http.get<Message[]>(this.chatMessagesGet + id);
+  }
+
+  getChats(username) {
+    return this.http.get<ChatroomsResponce>(this.chatRoomsGet + this.user.username);
   }
 
   registration(loginField: string, passwordField: string): Observable<any> {

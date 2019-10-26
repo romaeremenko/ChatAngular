@@ -18,7 +18,7 @@ export class MessagesChatRoomComponent implements OnInit, OnDestroy {
   @ViewChild('messageRef', {static: false}) private messageRef: ElementRef;
 
   private messages = ChatMessagesService.messages;
-  private chatRoomId: string  = 'MAIN';
+  private chatroomNameHeader = '';
   private chatRoom;
   private routeParams;
 
@@ -30,13 +30,13 @@ export class MessagesChatRoomComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.routeParams = this.route.params.subscribe(routeParams => {
+    this.routeParams = this.route.params.subscribe(_ => {
       if (!!this.chatRoom) {
-        this.chatRoomId = routeParams.id;
         this.chatRoom.unsubscribe();
         this.stringService.reset();
       }
-      this.chatRoom = this.chatMessagesService.getMessages(routeParams.id);
+      this.chatRoom = this.chatMessagesService.getMessages();
+      this.chatroomNameHeader = ChatMessagesService.room.name;
     });
   }
 

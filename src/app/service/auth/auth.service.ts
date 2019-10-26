@@ -10,10 +10,10 @@ import {UserResponce} from '../../interface/server/userResponce';
 })
 export class AuthService {
 
-  private loginField = 'loans';
+  private loginField = 'andreyyaz';
   private passwordField = '1234';
   private linkLogin = '/login';
-  private linkChatroom = '/chatroom/MAIN';
+  private linkChatroom;
   public isAuth = false;
 
   constructor(private router: Router, private сhatAPIService: ChatAPIService) {
@@ -21,11 +21,12 @@ export class AuthService {
 
   login() {
     this.сhatAPIService.isExist(this.loginField, this.passwordField).subscribe((resp: UserResponce) => {
+      console.log(resp);
       this.getUsernameAndId(resp);
-      this.isAuth = (resp.status === 'ok');
+      this.linkChatroom = '/chatroom/' + resp.shatroom_id;
+      this.isAuth = (resp.status === 'active');
       this.redirectTo(this.linkChatroom);
     });
-
   }
 
   registration() {

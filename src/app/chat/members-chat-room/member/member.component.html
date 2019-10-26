@@ -1,0 +1,5 @@
+<div class="containerForProfile alignCenter" (click)="createRoomWindow()">
+  <app-avatar></app-avatar>
+  <div [class]="this.titleStyle" [class.online]="member.status">{{member.username }}</div>
+</div>
+<app-create-room *ngIf="createRoom"  [title]="title" (submitForm)="submitForm($event)" (exit)="exit($event)"></app-create-room>

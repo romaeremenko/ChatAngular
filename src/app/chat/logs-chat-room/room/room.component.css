@@ -1,0 +1,7 @@
+.alignLeft.active {
+  background: #FFF6C6 !important;
+}
+
+.alignLeft:hover {
+  background: rgba(255, 246, 198, .5);
+}

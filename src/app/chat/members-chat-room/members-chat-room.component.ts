@@ -13,7 +13,6 @@ export class MembersChatRoomComponent implements OnInit, OnDestroy {
   private chatMembers;
 
   members = ChatMembersService.members;
-  titleStyle = `containerName marginName name sairaRegular18`;
 
   constructor(private chatMembersService: ChatMembersService, private elRef: ElementRef) { // chat -> chatAPIService
   }

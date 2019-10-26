@@ -12,13 +12,19 @@ export class ChatMessagesService {
 
   static messages = new BehaviorSubject([]);
   static messagesLength = 0;
+  static room = {
+    id: 'MAIN',
+    name: 'Main'
+  }
+  // static roomId = 'MAIN';
+  // static roomName = 'Main';
 
   constructor(private chatAPIService: ChatAPIService, private dateService: CompareDate, @Inject(DOCUMENT) private document: HTMLDocument) {
   }
 
-  public getMessages(id) {
-    return interval(100).subscribe(_ => {
-      this.chatAPIService.getMessages(id).subscribe((messages: Message[]) => {
+  public getMessages() {
+    return interval(500).subscribe(_ => {
+      this.chatAPIService.getMessages(ChatMessagesService.room.id).subscribe((messages: Message[]) => {
         if (ChatMessagesService.messagesLength !== messages.length) {
           console.log(messages);
           ChatMessagesService.messages.next(messages);

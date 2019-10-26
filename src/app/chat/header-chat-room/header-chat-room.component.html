@@ -3,12 +3,12 @@
     <div class="containerForProfile alignCenter">
       <div class="containerForAvatar alignCenter">
         <div class="avatar avatarProfile">
-          <button type="button" class="exit" onClick="window.location.reload();"></button>
+          <button type="button" class="exit" (click)="logout()"></button>
         </div>
       </div>
       <div class="containerForInfo">
         <div class="containerName">
-          <div class="name sairaRegular18">{{profile.user.username}}</div>
+          <div class="name sairaRegular18">{{chatAPIService.user.username}}</div>
           <div class="onlineTime sairaLight14">
             в сети 0 минут
           </div>

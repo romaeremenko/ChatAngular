@@ -1,0 +1,11 @@
+<div id="cover-div"></div>
+<div>
+  <div id="prompt-form-container">
+    <div id="prompt-form">
+      <div id="prompt-message">Введите название чата</div>
+      <input name="text" type="text" [(ngModel)] = "title">
+      <input type="submit" class="buttonSubmitStyle" (click)="submitTitle()" value="Ok">
+      <input type="button" class="buttonCancelStyle" (click)="exitForm()" name="cancel" value="Отмена">
+    </div>
+  </div>
+</div>

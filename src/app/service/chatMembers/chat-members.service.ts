@@ -4,6 +4,7 @@ import {BehaviorSubject, interval, Observable, Subject} from 'rxjs';
 import {User} from '../../interface/chat/users';
 import {Member} from '../../interface/chat/member';
 import {ChatMessagesService} from '../chatMessages/chat-messages.service';
+import {filter} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,19 +18,20 @@ export class ChatMembersService {
   }
 
   public getMembers() {
-    return interval(5000).subscribe( _ => {
+    return interval(5000).subscribe(_ => {
       this.chatAPIService.getMembers().subscribe((members) => {
-        console.log(members);
         if (ChatMembersService.membersLength !== members.length) {
-        ChatMembersService.members.next(this.transormMember(members));
-      }});
+          ChatMembersService.membersLength = members.length;
+          ChatMembersService.members.next(this.transormMember(members));
+        }
+      });
     });
   }
 
   private transormMember(members) {
-    members = members.map((r) => {
-      return {username: r.username, status: r.status.toString() === 'active'};
+    members = members.map((member) => {
+      return {username: member.username, status: member.status.toString() === 'active'};
     });
-    return members;
+    return members.filter(member => member.username !== this.chatAPIService.user.username);
   }
 }

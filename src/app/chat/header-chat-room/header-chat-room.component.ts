@@ -9,9 +9,13 @@ import {ChatAPIService} from '../../service/chatAPI/chat-api.service';
 })
 export class HeaderChatRoomComponent implements OnInit {
 
-  constructor(private logout: AuthService, private profile: ChatAPIService) { }
+  constructor(private chatAPIService: ChatAPIService) { }
 
   ngOnInit() {
   }
 
+  logout() {
+    this.chatAPIService.logout();
+    window.location.reload();
+  }
 }

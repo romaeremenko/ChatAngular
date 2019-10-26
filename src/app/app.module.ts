@@ -22,9 +22,11 @@ import {ChatMessagesService} from './service/chatMessages/chat-messages.service'
 import {CompareDate} from './service/compareDate/compare-date.service';
 import {InputMessageComponent} from './chat/messages-chat-room/input-message/input-message.component';
 import {InputMessageService} from './service/inputMessage/input-message.service';
+import { RoomComponent } from './chat/logs-chat-room/room/room.component';
+import { MemberComponent } from './chat/members-chat-room/member/member.component';
 
 import { AngularResizedEventModule } from 'angular-resize-event';
-
+import { CreateRoomComponent } from './chat/members-chat-room/create-room/create-room.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,9 @@ import { AngularResizedEventModule } from 'angular-resize-event';
     SortByStatusPipe,
     MessageComponent,
     InputMessageComponent,
+    RoomComponent,
+    MemberComponent,
+    CreateRoomComponent,
   ],
   imports: [
     HttpClientModule,
