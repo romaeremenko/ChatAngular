@@ -1,24 +1,29 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Message} from '../../../interface/chat/message';
 import {Chatroom} from '../../../interface/chat/chatroom';
 import {ChatMessagesService} from '../../../service/chatMessages/chat-messages.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ChatRoomsService} from '../../../service/chatRooms/chat-rooms.service';
 
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
   styleUrls: ['./room.component.css']
 })
-export class RoomComponent implements OnInit {
+export class RoomComponent implements OnInit, OnDestroy {
 
   @Input() room: Chatroom;
-
+  private routeParams;
   titleStyle = `containerName marginName name sairaRegular18`;
 
-  constructor(private chatMessagesService: ChatMessagesService, private route: Router) {
+  constructor(private chatMessagesService: ChatMessagesService, private route: Router, private link: ActivatedRoute, private chatRoomsService: ChatRoomsService) {
+
   }
 
   ngOnInit() {
+    this.routeParams = this.link.params.subscribe(_ => {
+      this.setActive(ChatMessagesService.room.name);
+    });
   }
 
   // changeRoom() {
@@ -44,14 +49,17 @@ export class RoomComponent implements OnInit {
   setActive(chatName) {
     const active = document.getElementsByClassName('alignLeft chatRoom');
     Array.from(active).forEach((el: HTMLElement) => {
-      console.log(chatName, el.innerText, chatName === el.innerText);
       if (chatName === el.innerText) {
-        console.log('123');
+        console.log(chatName);
         el.className = 'alignLeft chatRoom active';
       } else {
         el.className = 'alignLeft chatRoom';
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.routeParams.unsubscribe();
   }
 
 }

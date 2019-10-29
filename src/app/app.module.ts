@@ -9,7 +9,7 @@ import {RegistrationComponent} from './login/registration/registration.component
 import {AuthGuard} from './auth.guard';
 import {HttpClientModule} from '@angular/common/http';
 import {ChatAPIService} from './service/chatAPI/chat-api.service';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HeaderChatRoomComponent} from './chat/header-chat-room/header-chat-room.component';
 import {LogsChatRoomComponent} from './chat/logs-chat-room/logs-chat-room.component';
 import {MessagesChatRoomComponent} from './chat/messages-chat-room/messages-chat-room.component';
@@ -27,6 +27,8 @@ import { MemberComponent } from './chat/members-chat-room/member/member.componen
 
 import { AngularResizedEventModule } from 'angular-resize-event';
 import { CreateRoomComponent } from './chat/members-chat-room/create-room/create-room.component';
+import {ErrorsService} from './service/errors/errors.service';
+import { ChangeInfoComponent } from './chat/header-chat-room/change-info/change-info.component';
 
 @NgModule({
   declarations: [
@@ -45,12 +47,14 @@ import { CreateRoomComponent } from './chat/members-chat-room/create-room/create
     RoomComponent,
     MemberComponent,
     CreateRoomComponent,
+    ChangeInfoComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularResizedEventModule
   ],
   providers: [
@@ -59,7 +63,8 @@ import { CreateRoomComponent } from './chat/members-chat-room/create-room/create
     ChatMembersService,
     ChatMessagesService,
     CompareDate,
-    InputMessageService
+    InputMessageService,
+    ErrorsService,
   ],
   bootstrap: [AppComponent]
 })

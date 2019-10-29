@@ -7,6 +7,7 @@ import {Message} from '../../interface/chat/message';
 import {CompareDate} from '../../service/compareDate/compare-date.service';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {ResizedEvent} from 'angular-resize-event';
+import {ChatRoomsService} from '../../service/chatRooms/chat-rooms.service';
 
 @Component({
   selector: 'app-messages-chat-room',
@@ -25,16 +26,23 @@ export class MessagesChatRoomComponent implements OnInit, OnDestroy {
   constructor(private chatMessagesService: ChatMessagesService,
               private stringService: InputMessageService,
               private route: ActivatedRoute,
+              private chatRoomsService: ChatRoomsService,
               private compareDate: CompareDate
   ) {
   }
 
   ngOnInit() {
-    this.routeParams = this.route.params.subscribe(_ => {
+    this.routeParams = this.route.params.subscribe(param => {
+
       if (!!this.chatRoom) {
+        ChatMessagesService.room = {
+          id: this.chatRoomsService.getIdByChatname(param.id),
+          name: param.id.split(/(?=[A-ZА-Я])/).join(' ')
+        }
         this.chatRoom.unsubscribe();
         this.stringService.reset();
       }
+      // ChatMessagesService.room.id = param.id;
       this.chatRoom = this.chatMessagesService.getMessages();
       this.chatroomNameHeader = ChatMessagesService.room.name;
     });

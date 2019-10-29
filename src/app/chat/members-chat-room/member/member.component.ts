@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Chatroom} from '../../../interface/chat/chatroom';
 import {Member} from '../../../interface/chat/member';
 import {ChatAPIService} from '../../../service/chatAPI/chat-api.service';
@@ -8,9 +8,10 @@ import {ChatAPIService} from '../../../service/chatAPI/chat-api.service';
   templateUrl: './member.component.html',
   styleUrls: ['./member.component.css']
 })
-export class MemberComponent implements OnInit {
+export class MemberComponent implements OnInit, OnDestroy {
   titleStyle = `containerName marginName name sairaRegular18`;
   createRoom = false;
+  subscr;
   title = '';
 
   @Input() member: Member;
@@ -23,7 +24,7 @@ export class MemberComponent implements OnInit {
 
   submitForm(title: string) {
     console.log('dgdgf');
-    this.chatAPIService.createChatRoom(this.member.username, title).subscribe(r=> {
+    this.subscr = this.chatAPIService.createChatRoom(this.member.username, title).subscribe(r => {
       console.log(r);
     });
     this.toggleCreateRoom();
@@ -41,4 +42,7 @@ export class MemberComponent implements OnInit {
     this.createRoom = !this.createRoom;
   }
 
+  ngOnDestroy() {
+    this.subscr.unsubscribe();
+  }
 }

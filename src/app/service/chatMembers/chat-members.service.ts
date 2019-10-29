@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ChatAPIService} from '../chatAPI/chat-api.service';
-import {BehaviorSubject, interval, Observable, Subject} from 'rxjs';
+import {BehaviorSubject, interval, Observable, Subject, timer} from 'rxjs';
 import {User} from '../../interface/chat/users';
 import {Member} from '../../interface/chat/member';
 import {ChatMessagesService} from '../chatMessages/chat-messages.service';
@@ -18,7 +18,7 @@ export class ChatMembersService {
   }
 
   public getMembers() {
-    return interval(5000).subscribe(_ => {
+    return timer(0, 5000).subscribe(_ => {
       this.chatAPIService.getMembers().subscribe((members) => {
         if (ChatMembersService.membersLength !== members.length) {
           ChatMembersService.membersLength = members.length;

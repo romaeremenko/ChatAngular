@@ -6,7 +6,7 @@
       <input type="text" [(ngModel)]="authService.passwordField" [ngModelOptions]="{standalone: true}" class="inputname" placeholder="Новый пароль">
       <button type="button" (click)="redirectLogin()">Назад</button>
       <button type="button" (click)="authService.registration()" id="buttonReg">Регистрация</button>
-      <p id="check"></p>
+      <p id="check">{{authService.responce}}</p>
     </form>
   </div>
 </div>

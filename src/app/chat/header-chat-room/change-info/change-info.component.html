@@ -1,0 +1,72 @@
+<div id="cover-div"></div>
+<div>
+  <div id="prompt-form-container">
+    <div id="prompt-form">
+      <div id="prompt-message">Изменить информацию</div>
+      <div><span class="attention">* </span> отмечены обязательные поля</div>
+      <form [formGroup]="form" (ngSubmit)="submitInfo()">
+        <div>
+          <label>О себе </label><textarea formControlName="about"></textarea>
+        </div>
+        <div class="requiredFields">
+          <label>Телефон <span class="attention">*</span></label>
+          <span class="error" *ngIf="formPhone.errors && formPhone.touched">
+            <small *ngIf="formPhone.errors.required">
+              Поле обязательно для заполнения
+            </small>
+            <small *ngIf="formPhone.errors.min">
+              Мин. длинна 6 цифр
+            </small>
+          </span>
+          <input type="number" formControlName="phone" step="0.01">
+        </div>
+        <div>
+          <label>Страна </label>
+          <select formControlName="country">
+            <option value="" disabled>Выберите страну</option>
+            <option *ngFor="let country of countries" [ngValue]="country">{{country}}</option>
+          </select>
+        </div>
+        <div class="requiredFields">
+          <label>Почта <span class="attention">*</span></label>
+          <span class="error" *ngIf="formMail.errors && formMail.touched">
+            <small *ngIf="formMail.errors.required">
+              Поле обязательно для заполнения
+            </small>
+            <small *ngIf="formMail.errors.email">
+              Введите корректную почту
+            </small>
+          </span>
+          <input type="text" formControlName="mail">
+        </div>
+        <div>
+          <label>Пол </label>
+          <input type="radio" name="gender" value="male" formControlName="gender"> Мужской<br>
+          <input type="radio" name="gender" value="female" formControlName="gender"> Женский<br>
+        </div>
+        <!--<div>-->
+          <!--<label>Выберите аватар </label>-->
+          <!--<div class="avatarsBlock">-->
+            <!--<ng-container *ngFor="let avatar of avatars">-->
+              <!--<div class="avatars" [ngStyle]="{'background-image': 'url(' + getImage(avatar) + ')'}" (click)="setActive(avatar)"></div>-->
+            <!--</ng-container>-->
+          <!--</div>-->
+        <!--</div>-->
+        <ng-container *ngIf="showAvatars">
+          <div>
+            <label>Выберите аватар </label>
+            <div class="avatarsBlock">
+              <ng-container *ngFor="let avatar of avatars">
+                <div class="avatars" [ngStyle]="{'background-image': 'url(' + getImage(avatar) + ')'}"
+                     (click)="setActive(avatar)">
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+        <input type="submit" class="buttonSubmitStyle" [disabled]="form.invalid" value="Отправить">
+        <input type="button" class="buttonCancelStyle" (click)="exitForm()" name="cancel" value="Отмена">
+      </form>
+    </div>
+  </div>
+</div>

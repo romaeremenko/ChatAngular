@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {catchError} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {User} from '../../interface/chat/users';
 import {UserResponce} from '../../interface/server/userResponce';
 import {Message} from '../../interface/chat/message';
@@ -31,6 +31,7 @@ export class ChatAPIService {
   private regUrl = 'https://studentschat.herokuapp.com/users/register';
   private chatMessagesPost = 'https://studentschat.herokuapp.com/messages';
   private chatRoomPost = 'https://studentschat.herokuapp.com/chatroom';
+  private informationPost = 'https://studentschat.herokuapp.com/users/info';
   private logoutUrl = 'https://studentschat.herokuapp.com/users/logout';
   private currentRoom;
 
@@ -51,11 +52,12 @@ export class ChatAPIService {
   }
 
   isExist(loginField: string, passwordField: string): Observable<UserResponce> | Observable<object> {
-    return this.http.post(this.loginUrl, {username: loginField, password: passwordField});
+    return this.http.post(this.loginUrl, {username: loginField, password: passwordField}).pipe(map(mf => mf[0]));
   }
 
-  logout(): Observable<object> {
-    return this.http.post(this.logoutUrl, {username: this.user.username});
+  logout(id, name): Observable<object> {
+    console.log(id, name);
+    return this.http.post(this.logoutUrl, {username: this.user.username, chatroom_id: id, chatroom_name: name});
   }
 
   sendMessage(inputMessage: string): Observable<object> {
@@ -86,6 +88,11 @@ export class ChatAPIService {
     return this.http.post(this.chatRoomPost, postRequest);
   }
 
+  postInfo(postRequest) {
+    console.log(postRequest);
+    // return this.http.post(this.informationPost, postRequest);
+  }
+
   getMembers(): Observable<any> {
     return this.chatUsers;
   }
@@ -100,9 +107,7 @@ export class ChatAPIService {
   }
 
   registration(loginField: string, passwordField: string): Observable<any> {
-    return this.http.post(this.regUrl, {username: loginField, password: passwordField}).pipe(
-      catchError(err => of(false))
-    );
+    return this.http.post(this.regUrl, {username: loginField, password: passwordField});
   }
 
 }

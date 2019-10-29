@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../service/auth/auth.service';
+import {Component, OnInit} from '@angular/core';
 import {ChatAPIService} from '../../service/chatAPI/chat-api.service';
+import {ChatMessagesService} from '../../service/chatMessages/chat-messages.service';
 
 @Component({
   selector: 'app-header-chat-room',
@@ -9,13 +9,33 @@ import {ChatAPIService} from '../../service/chatAPI/chat-api.service';
 })
 export class HeaderChatRoomComponent implements OnInit {
 
-  constructor(private chatAPIService: ChatAPIService) { }
+  createChangeInfo = false;
+
+  constructor(private chatAPIService: ChatAPIService, private chatMessagesService: ChatMessagesService) {
+  }
 
   ngOnInit() {
   }
 
   logout() {
-    this.chatAPIService.logout();
+    this.chatAPIService.logout(ChatMessagesService.room.id, ChatMessagesService.room.name).subscribe( _ => {console.log(_)});
     window.location.reload();
+  }
+
+  submitForm(information) {
+    this.chatAPIService.postInfo(information);
+    this.toggleChangeInfoWindow();
+  }
+
+  createChangeInfoWindow() {
+    this.toggleChangeInfoWindow();
+  }
+
+  exit() {
+    this.toggleChangeInfoWindow();
+  }
+
+  toggleChangeInfoWindow() {
+    this.createChangeInfo = !this.createChangeInfo;
   }
 }

@@ -14,7 +14,7 @@ export class MembersChatRoomComponent implements OnInit, OnDestroy {
 
   members = ChatMembersService.members;
 
-  constructor(private chatMembersService: ChatMembersService, private elRef: ElementRef) { // chat -> chatAPIService
+  constructor(private chatMembersService: ChatMembersService, private elRef: ElementRef) {
   }
 
   ngOnInit() {
