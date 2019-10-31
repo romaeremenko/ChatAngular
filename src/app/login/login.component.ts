@@ -14,7 +14,6 @@ export class LoginComponent implements OnDestroy {
   constructor(private authService: AuthService, private router: Router, private chatAPIService: ChatAPIService, private location: Location) {
     if (authService.isAuth) {
       this.location.back();
-      // router.navigate(['/chatroom/Main']);
     }
   }
 

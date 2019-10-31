@@ -20,10 +20,7 @@ export class LogsChatRoomComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.route.params.subscribe(routeParams => {
-      // this.setActive(routeParams.id);
-      this.logs = this.chatRoomsService.getChats();
-    // });
+    this.logs = this.chatRoomsService.getChats();
   }
 
   ngOnDestroy() {

@@ -32,6 +32,7 @@ export class InputMessageService {
 
   updateStringInfo(input: string): void {
     if (!input) {
+      this.reset();
       return;
     }
     const numbersAmount = input.length - input.replace(/[0-9]/g, '').length;
@@ -45,7 +46,6 @@ export class InputMessageService {
   selectionChange(ev: any) {
     this.selection.start = ev.target.selectionStart;
     this.selection.end = ev.target.selectionEnd;
-    console.log(this.selection);
   }
 
   convert(input: string, {startTag, endTag}, start: number = this.selection.start, end: number = this.selection.end) {

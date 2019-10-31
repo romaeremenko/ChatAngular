@@ -23,9 +23,9 @@ export class MemberComponent implements OnInit, OnDestroy {
   }
 
   submitForm(title: string) {
-    console.log('dgdgf');
-    this.subscr = this.chatAPIService.createChatRoom(this.member.username, title).subscribe(r => {
-      console.log(r);
+    this.subscr = this.chatAPIService.createChatRoom(this.member.username, title).subscribe(_ => {
+    }, error => {
+      alert('Чат с пользователем уже существует');
     });
     this.toggleCreateRoom();
   }
@@ -43,6 +43,8 @@ export class MemberComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscr.unsubscribe();
+    if (!!this.subscr) {
+      this.subscr.unsubscribe();
+    }
   }
 }

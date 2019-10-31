@@ -7,6 +7,7 @@ import {UserResponce} from '../../interface/server/userResponce';
 import {Message} from '../../interface/chat/message';
 import {ChatroomsResponce} from '../../interface/server/chatroomsResponce';
 import {Chatroom} from '../../interface/chat/chatroom';
+import {Info} from '../../interface/chat/info';
 
 @Injectable({
   providedIn: 'root'
@@ -22,47 +23,28 @@ export class ChatAPIService {
 
   user: User = {
     user_id: '',
-    username: ''
+    username: '',
+    avatarId: ''
   };
-  private chatUsers = this.http.get<User[]>('https://studentschat.herokuapp.com/users/');
-  private chatMessagesGet = 'https://studentschat.herokuapp.com/messages?chatroom_id=';
-  private chatRoomsGet = 'https://studentschat.herokuapp.com/chatroom?username='
-  private loginUrl = 'https://studentschat.herokuapp.com/users/login';
-  private regUrl = 'https://studentschat.herokuapp.com/users/register';
-  private chatMessagesPost = 'https://studentschat.herokuapp.com/messages';
-  private chatRoomPost = 'https://studentschat.herokuapp.com/chatroom';
-  private informationPost = 'https://studentschat.herokuapp.com/users/info';
-  private logoutUrl = 'https://studentschat.herokuapp.com/users/logout';
-  private currentRoom;
+  usersAvatars = {};
+  userInfo: Info;
 
-  // Добавил запрос для логина /users/login
-  // формат запроса
-  // {
-  //    username: inputMessage
-  // }
-  //
-  // формат  успешного ответа
-  //
-  // {
-  //    status: "ok"
-  // }
-  //
+
+  private bathPath = 'https://studentschat.herokuapp.com';
+  public currentRoom;
 
   constructor(private http: HttpClient) {
   }
 
   isExist(loginField: string, passwordField: string): Observable<UserResponce> | Observable<object> {
-    return this.http.post(this.loginUrl, {username: loginField, password: passwordField}).pipe(map(mf => mf[0]));
+    return this.http.post(`${this.bathPath}/users/login`, {username: loginField, password: passwordField}).pipe(map(mf => mf[0]));
   }
 
   logout(id, name): Observable<object> {
-    console.log(id, name);
-    return this.http.post(this.logoutUrl, {username: this.user.username, chatroom_id: id, chatroom_name: name});
+    return this.http.post(`${this.bathPath}/users/logout`, {username: this.user.username, chatroom_id: id, chatroom_name: name});
   }
 
   sendMessage(inputMessage: string): Observable<object> {
-    console.log(this.currentRoom);
-
     const postRequest: Message = {
       datetime: new Date().toISOString(),
       message: inputMessage,
@@ -73,41 +55,42 @@ export class ChatAPIService {
       postRequest.chatroom_id = this.currentRoom;
     }
 
-    return this.http.post(this.chatMessagesPost, postRequest);
+    return this.http.post(`${this.bathPath}/messages`, postRequest);
   }
 
   createChatRoom(inviteUserId: string, chatName: string): Observable<object> {
-    console.log(this.user.username, inviteUserId, chatName);
-
     const postRequest: Chatroom = {
       owner: this.user.username,
       invitees: inviteUserId,
       name: chatName
     };
 
-    return this.http.post(this.chatRoomPost, postRequest);
+    return this.http.post(`${this.bathPath}/chatroom`, postRequest);
   }
 
-  postInfo(postRequest) {
-    console.log(postRequest);
-    // return this.http.post(this.informationPost, postRequest);
+  postInfo(postRequest: Info) {
+    return this.http.post(`${this.bathPath}/users/info`, postRequest);
+  }
+
+  getInfo(): Observable<any> {
+    return this.http.get<Info>(`${this.bathPath}/users/info?username=${this.user.username}`);
   }
 
   getMembers(): Observable<any> {
-    return this.chatUsers;
+    return this.http.get<User[]>(`${this.bathPath}/users/`);
   }
 
   getMessages(id): Observable<any> {
     this.currentRoom = id;
-    return this.http.get<Message[]>(this.chatMessagesGet + id);
+    return this.http.get<Message[]>(`${this.bathPath}/messages?chatroom_id=${id}`);
   }
 
   getChats(username) {
-    return this.http.get<ChatroomsResponce>(this.chatRoomsGet + this.user.username);
+    return this.http.get<ChatroomsResponce>(`${this.bathPath}/chatroom?username=${this.user.username}`);
   }
 
   registration(loginField: string, passwordField: string): Observable<any> {
-    return this.http.post(this.regUrl, {username: loginField, password: passwordField});
+    return this.http.post(`${this.bathPath}/users/register`, {username: loginField.trim(), password: passwordField});
   }
 
 }

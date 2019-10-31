@@ -31,6 +31,7 @@ export class InputMessageComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(_ => {
       this.inputMessage = null;
+      this.stringService.reset();
     });
   }
 

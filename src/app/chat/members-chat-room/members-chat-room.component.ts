@@ -15,13 +15,19 @@ export class MembersChatRoomComponent implements OnInit, OnDestroy {
   members = ChatMembersService.members;
 
   constructor(private chatMembersService: ChatMembersService, private elRef: ElementRef) {
+    this.chatMembersService.getMembers();
+    // ChatMembersService.members.subscribe(members => {
+    //   // this.chatMembers = members;
+    //   //console.log(members);
+    // });
   }
 
   ngOnInit() {
-    this.chatMembers = this.chatMembersService.getMembers();
-    // ChatMembersService.members.subscribe(members => {
-    //   //console.log(members);
-    // });
+    // console.log('members');
+    ChatMembersService.members.subscribe(members => {
+      this.chatMembers = members;
+      //console.log(members);
+    });
   }
 
   countOnlineMembers(): void {
@@ -29,7 +35,7 @@ export class MembersChatRoomComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.chatMembers.unsubscribe();
+    // this.chatMembers.unsubscribe();
   }
 
 }

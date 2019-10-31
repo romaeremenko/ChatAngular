@@ -15,6 +15,12 @@ body {
   font-weight: 400;
 }
 
+.name {
+  /*margin-left: 1%;*/
+  font-size: .8em;
+  color: #000000;
+}
+
 .sairaLight14 {
   font-size: .8em;
   font-weight: 300;
@@ -60,12 +66,6 @@ a {
   max-width: 176px;
   min-width: 176px;
   display: inline-flex;
-}
-
-.name {
-  /*margin-left: 1%;*/
-  font-size: .8em;
-  color: #000000;
 }
 
 .marginName {

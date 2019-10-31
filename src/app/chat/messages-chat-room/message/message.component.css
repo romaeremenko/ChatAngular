@@ -75,3 +75,14 @@
   margin-left: auto;
   background-color: #FFB800;
 }
+
+.sairaRegular18 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.name {
+  /*margin-left: 1%;*/
+  font-size: 1em;
+  color: #000000;
+}

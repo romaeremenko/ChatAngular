@@ -26,23 +26,15 @@ export class MessagesChatRoomComponent implements OnInit, OnDestroy {
   constructor(private chatMessagesService: ChatMessagesService,
               private stringService: InputMessageService,
               private route: ActivatedRoute,
-              private chatRoomsService: ChatRoomsService,
-              private compareDate: CompareDate
   ) {
   }
 
   ngOnInit() {
     this.routeParams = this.route.params.subscribe(param => {
-
       if (!!this.chatRoom) {
-        ChatMessagesService.room = {
-          id: this.chatRoomsService.getIdByChatname(param.id),
-          name: param.id.split(/(?=[A-ZА-Я])/).join(' ')
-        }
         this.chatRoom.unsubscribe();
         this.stringService.reset();
       }
-      // ChatMessagesService.room.id = param.id;
       this.chatRoom = this.chatMessagesService.getMessages();
       this.chatroomNameHeader = ChatMessagesService.room.name;
     });

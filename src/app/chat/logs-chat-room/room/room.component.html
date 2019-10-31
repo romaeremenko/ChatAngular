@@ -1,6 +1,8 @@
 <div (click)="setRouterLink()" class="alignLeft chatRoom">
   <div class="containerForProfile alignCenter">
-    <app-avatar></app-avatar>
+    <div class="containerForAvatar alignCenter">
+      <div class="avatar avatarProfileTab"><p>{{room.name.substr(0,1)}}</p></div>
+    </div>
     <div [class]="this.titleStyle">{{room.name}}</div>
   </div>
 </div>

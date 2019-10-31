@@ -30,7 +30,8 @@ export class ChatMembersService {
 
   private transormMember(members) {
     members = members.map((member) => {
-      return {username: member.username, status: member.status.toString() === 'active'};
+      this.chatAPIService.usersAvatars[member.username] = member.avatarId;
+      return {username: member.username, status: member.status.toString() === 'active', avatarId: member.avatarId};
     });
     return members.filter(member => member.username !== this.chatAPIService.user.username);
   }

@@ -24,18 +24,15 @@ export class AuthService {
 
   login() {
     this.сhatAPIService.isExist(this.loginField, this.passwordField).subscribe((resp: UserResponce) => {
-        console.log(resp);
-        this.getUsernameAndId(resp);
-        if (!resp.chatroom_id || !resp.chatroom_name) {
-          console.log('ddd');
-          this.setRoom('MAIN', 'Main');
-        } else {
-          this.setRoom(resp.chatroom_id, resp.chatroom_name);
-        }
-        this.linkChatroom = '/chatroom/' + ChatMessagesService.room.name.split(' ').join('');
-        this.isAuth = (resp.status === 'active');
-      console.log(this.linkChatroom, this.isAuth);
-        this.redirectTo(this.linkChatroom);
+      this.getUsernameInfo(resp);
+      if (!resp.chatroom_id || !resp.chatroom_name) {
+        this.setRoom('MAIN', 'Main');
+      } else {
+        this.setRoom(resp.chatroom_id, resp.chatroom_name);
+      }
+      this.linkChatroom = '/chatroom/' + ChatMessagesService.room.name.split(' ').join('');
+      this.isAuth = (resp.status === 'active');
+      this.redirectTo(this.linkChatroom);
     }, error => {
       this.responce = this.errorsService.loginRequest(error.message);
     });
@@ -44,7 +41,9 @@ export class AuthService {
   registration() {
     this.сhatAPIService.registration(this.loginField, this.passwordField).subscribe(resp => {
       if (resp) {
-        this.getUsernameAndId(resp);
+        this.setRoom('MAIN', 'Main');
+        this.linkChatroom = '/chatroom/Main';
+        this.getUsernameInfo(resp);
         this.isAuth = true;
         this.redirectTo(this.linkChatroom);
       }
@@ -56,7 +55,6 @@ export class AuthService {
 
   isAutenticated(): Observable<boolean> {
     if (this.isAuth) {
-      // this.redirectTo(this.linkChatroom);
       return of(this.isAuth);
     } else {
       this.redirectTo(this.linkLogin);
@@ -64,9 +62,12 @@ export class AuthService {
     }
   }
 
-  getUsernameAndId(resp) {
-    this.сhatAPIService.user.user_id = resp.user_id;
-    this.сhatAPIService.user.username = resp.username;
+  getUsernameInfo(resp) {
+    this.сhatAPIService.user = {
+      user_id: resp.user_id,
+      username: resp.username,
+      avatarId: resp.avatarId,
+    };
   }
 
   redirectTo(path): void {

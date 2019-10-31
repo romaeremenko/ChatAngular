@@ -47,13 +47,12 @@ export class RoomComponent implements OnInit, OnDestroy {
   }
 
   setActive(chatName) {
-    const active = document.getElementsByClassName('alignLeft chatRoom');
-    Array.from(active).forEach((el: HTMLElement) => {
+    const arrayChats = document.getElementsByClassName(this.titleStyle);
+    Array.from(arrayChats).forEach((el: HTMLElement) => {
       if (chatName === el.innerText) {
-        console.log(chatName);
-        el.className = 'alignLeft chatRoom active';
+        el.parentElement.parentElement.className = 'alignLeft chatRoom active';
       } else {
-        el.className = 'alignLeft chatRoom';
+        el.parentElement.parentElement.className = 'alignLeft chatRoom';
       }
     });
   }

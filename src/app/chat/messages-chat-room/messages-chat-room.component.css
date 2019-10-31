@@ -1,5 +1,5 @@
 .chatForm {
-  width: 115vh;
+  width: 100%;
   height: 100vh;
   position: relative;
   box-shadow: inset 0px 0px 5px hsl(0, 0%, 80%);

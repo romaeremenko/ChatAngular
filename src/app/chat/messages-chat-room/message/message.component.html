@@ -3,7 +3,7 @@
   <p>{{dateService.previousDate}}</p>
 </div>
 <div class="chatMessage alignMessage">
-  <div class="chatAvatar"></div>
+  <div class="chatAvatar" [ngStyle]="{'background-image': getUserAvatar, 'background-size': 'contain'}"></div>
   <div class="boxForMessage" [class.boxForMessageSelf]="messageFromMyself()">
     <div class="messageText sairaLight14" [class.messageTextSelf]="messageFromMyself()">
       <div class="name sairaRegular18">{{messageFromUser.username}}</div>

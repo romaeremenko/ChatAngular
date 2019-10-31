@@ -13,7 +13,6 @@ export class RegistrationComponent implements OnDestroy {
   constructor(private authService: AuthService, private router: Router, private location: Location) {
     if (authService.isAuth) {
       this.location.back();
-      // router.navigate(['/chatroom/MAIN']);
     }
   }
 

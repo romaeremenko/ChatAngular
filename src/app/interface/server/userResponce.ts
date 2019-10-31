@@ -4,4 +4,10 @@ export interface UserResponce {
   username?: string;
   chatroom_id?: string;
   chatroom_name?: string;
+  gender?: string;
+  avatarId?: string;
+  about?: string;
+  phone?: number;
+  country?: string;
+  mail?: string;
 }

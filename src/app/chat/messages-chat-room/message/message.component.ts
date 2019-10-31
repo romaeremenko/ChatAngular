@@ -24,14 +24,19 @@ export class MessageComponent {
   }
 
   get newDate() {
-    // if (!this.cashResult) {
-    //   this.cashResult = this.dateService.compareDate(this.messageFromUser.datetime);
-    // }
-    // return this.cashResult;
     return this.dateService.compareDate(this.messageFromUser.datetime);
   }
 
   messageFromMyself(): boolean {
     return this.messageFromUser.username === this.chatAPIService.user.username;
+  }
+
+  get getUserAvatar() {
+    if (this.messageFromUser.username === this.chatAPIService.user.username) {
+      return 'url(/assets/' + this.chatAPIService.user.avatarId + '.svg)';
+    }
+    if (!!this.messageFromUser.avatarId) {
+      return 'url(/assets/' + this.messageFromUser.avatarId + '.svg)';
+    }
   }
 }

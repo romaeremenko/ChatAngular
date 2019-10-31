@@ -8,8 +8,7 @@
 
 .account {
   margin-left: auto;
-  min-width: 37vh;
-  max-width: 37vh;
+  width: 20%;
   background: #FFA528;
 }
 
