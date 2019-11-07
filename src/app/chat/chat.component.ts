@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-chat',
@@ -6,12 +6,5 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
   styleUrls: ['./chat.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ChatComponent implements OnInit {
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
+export class ChatComponent {
 }

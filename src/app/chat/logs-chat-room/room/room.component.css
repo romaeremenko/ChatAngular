@@ -1,0 +1,41 @@
+.alignLeft.active {
+  background: #FFF6C6 !important;
+}
+
+.alignLeft:hover {
+  background: rgba(255, 246, 198, .5);
+}
+
+.containerForAvatar {
+  margin: 5px;
+}
+
+.avatarProfileTabs {
+  background: #EED8D8;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 60px;
+  min-width: 60px;
+  max-height: 60px;
+  min-height: 60px;
+  -webkit-border-radius: 38px;
+  -moz-border-radius: 38px;
+  border-radius: 38px;
+  background: #EED8D8;
+}
+
+.avatar p {
+  font-size: xx-large;
+  font-weight: 600;
+  color: #0000001f;
+}
+
+.alignCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

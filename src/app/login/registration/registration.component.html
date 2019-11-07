@@ -1,1 +1,12 @@
-<p>registration works!</p>
+<div class="bg-modal">
+  <div class="modal-content" *ngIf="!authService.isAuth">
+    <div class="header-modal">Регистрация</div>
+    <form action="">
+      <input type="text" [(ngModel)]="authService.loginField" [ngModelOptions]="{standalone: true}" class="inputname" placeholder="Новый логин">
+      <input type="text" [(ngModel)]="authService.passwordField" [ngModelOptions]="{standalone: true}" class="inputname" placeholder="Новый пароль">
+      <button type="button" (click)="redirectLogin()">Назад</button>
+      <button type="button" (click)="authService.registration()" id="buttonReg">Регистрация</button>
+      <p id="check">{{authService.responce}}</p>
+    </form>
+  </div>
+</div>

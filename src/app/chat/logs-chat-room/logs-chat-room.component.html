@@ -1,25 +1,14 @@
-  <div class="chatTabs">
-    <!--<div class="chatNameHeader alignCenter">-->
-      <!--<div class="chatName sairaRegular18">-->
-        <!--ЧАТЫ-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div id="chatRooms" class="chatMembers scroll">-->
-      <!--<div class="alignLeft chatRoomId active" data-chatRoomUserID="MAIN">-->
-        <!--<div class="containerForProfile alignCenter">-->
-          <!--<div class="containerForAvatar alignCenter">-->
-            <!--<div class="avatar avatarProfileTabs" data-chatRoomAmount="MAIN"></div>-->
-          <!--</div>-->
-          <!--<div>-->
-            <!--<div class="containerName">-->
-              <!--<div class="name sairaRegular18">-->
-                <!--MAIN-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--&lt;!&ndash;- Ниже блок, чтобы все чаты вмещались в видимую область -&ndash;&gt;-->
-      <!--<div id="emptyRoom" class="containerForAvatar"></div>-->
-    <!--</div>-->
+<div class="chatTabs">
+  <div class="chatNameHeader alignCenter">
+    <div class="chatName sairaRegular18">
+      ЧАТЫ
+    </div>
   </div>
+  <div id="chatRooms" class="chats scroll">
+    <ng-container *ngFor="let room of rooms | async">
+      <app-room [room]="room"></app-room>
+    </ng-container>
+  </div>
+</div>
+<router-outlet></router-outlet>
+

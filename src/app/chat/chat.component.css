@@ -15,6 +15,12 @@ body {
   font-weight: 400;
 }
 
+.name {
+  /*margin-left: 1%;*/
+  font-size: .8em;
+  color: #000000;
+}
+
 .sairaLight14 {
   font-size: .8em;
   font-weight: 300;
@@ -56,41 +62,10 @@ a {
   background: rgba(0, 0, 0, .1);
 }
 
-.containerForAvatar {
-  margin: 5px;
-}
-
-.containerForProfile {
-  display: flex;
-  overflow: hidden;
-}
-
-.avatarProfileTabs {
-  background: #EED8D8;
-}
-
-.avatar {
-  position: relative;
-  max-width: 60px;
-  min-width: 60px;
-  max-height: 60px;
-  min-height: 60px;
-  -webkit-border-radius: 38px;
-  -moz-border-radius: 38px;
-  border-radius: 38px;
-  background: #EED8D8;
-}
-
 .containerName {
   max-width: 176px;
   min-width: 176px;
   display: inline-flex;
-}
-
-.name {
-  margin-left: 1%;
-  font-size: .8em;
-  color: #000000;
 }
 
 .marginName {
@@ -99,4 +74,9 @@ a {
 
 .online {
   color: #FF8000;
+}
+
+*:focus {
+  outline: 0;
+  outline: none;
 }

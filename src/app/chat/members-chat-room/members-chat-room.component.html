@@ -7,15 +7,9 @@
     </div>
   </div>
   <div class="chatMembers scroll">
-
-    <div class="alignCenter" *ngFor="let member of members">
-      <div class="containerForProfile alignCenter">
-        <div class="containerForAvatar alignCenter">
-          <div class="avatar avatarProfileTab"></div>
-        </div>
-        <div class="containerName marginName name sairaRegular18" [class.online]="member.status">{{member.username}}</div>
-      </div>
+    <div class="alignCenter" *ngFor="let member of members | async | sortByStatus">
+      <app-member [member]="member"></app-member>
     </div>
-
   </div>
+  <div class="emptyContainer"></div>
 </div>

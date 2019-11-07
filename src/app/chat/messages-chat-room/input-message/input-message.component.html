@@ -1,0 +1,29 @@
+<div class="inputMessageBox">
+  <div class="inputMessage">
+    <form name="message" method="post">
+      <input type="text" (select)="stringService.selectionChange($event)" [(ngModel)]="inputMessage" [ngModelOptions]="{standalone: true}" placeholder="Написать сообщение...">
+      <input class="send" (click)="sendMessage()" type="button">
+    </form>
+  </div>
+  <div class="editing">
+    <form>
+      <input (click)="applyStyle(bold)" class="bold" type="button">
+      <input (click)="applyStyle(italic)" class="italic" type="button">
+      <input (click)="applyStyle(underline)" class="underline" type="button">
+    </form>
+    <ul class="characters sairaLightCharacters">
+      <li>
+        Знаков препинания: {{stringService.punctuationMarksAmount}}
+      </li>
+      <li>
+        Невидимых символов: {{stringService.spacesAmount}}
+      </li>
+      <li>
+        Букв: {{stringService.lettersAmount}}
+      </li>
+      <li>
+        Символов: {{stringService.symbolsAmount}}
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,11 +1,12 @@
 <div class="bg-modal">
-  <div class="modal-content">
+  <div class="modal-content" *ngIf="!authService.isAuth">
     <div class="header-modal">Войдите</div>
     <form action="">
-      <input type="text" [(ngModel)]="auth.loginField" [ngModelOptions]="{standalone: true}" class="inputname" placeholder="Имя Фамилия" id="uname">
-      <button type="button" (click)="auth.login()">Вход</button>
-      <button type="button" id="buttonReg">Регистрация</button>
-      <p id="check"></p>
+      <input type="text" [(ngModel)]="authService.loginField" [ngModelOptions]="{standalone: true}" class="inputname" placeholder="Логин">
+      <input type="text" [(ngModel)]="authService.passwordField" [ngModelOptions]="{standalone: true}" class="inputname" placeholder="Пароль">
+      <button type="button" (click)="authService.login()">Вход</button>
+      <button type="button" (click)="redirectReg()" id="buttonReg">Регистрация</button>
+      <p id="check">{{authService.responce}}</p>
     </form>
   </div>
 </div>

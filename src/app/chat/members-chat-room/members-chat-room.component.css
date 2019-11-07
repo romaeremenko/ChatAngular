@@ -1,5 +1,5 @@
 .members {
-  min-width: 150vh;
+  width: 25%;
   background: #FFF;
   position: absolute;
 }
@@ -29,7 +29,7 @@
 
 .chatMembers {
   background: #FFF;
-  height: 90vh;
+  height: 87vh;
   margin-top: 25px;
 }
 
@@ -39,6 +39,6 @@
   align-items: center;
 }
 
-.online {
-  color: #FF8000;
+.emptyContainer {
+  height: 2%;
 }

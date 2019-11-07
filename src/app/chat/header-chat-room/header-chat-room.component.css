@@ -8,8 +8,7 @@
 
 .account {
   margin-left: auto;
-  min-width: 20%;
-  max-width: 20%;
+  width: 20%;
   background: #FFA528;
 }
 
@@ -61,7 +60,6 @@
   outline: none;
 }
 
-
 .containerForInfo {
   max-width: 176px;
   min-width: 176px;
@@ -89,6 +87,12 @@
   -moz-border-radius: 8px;
   border-radius: 8px;
   background: #F17373;
+}
+
+.changeInfo button {
+  background: #F17373;
+  border: none;
+  outline: none;
 }
 
 .globalTime {
