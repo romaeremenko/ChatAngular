@@ -8,7 +8,6 @@ import {ChatAPIService} from '../../../service/chatAPI/chat-api.service';
   styleUrls: ['./change-info.component.css']
 })
 export class ChangeInfoComponent implements OnInit {
-
   @Output() submitForm = new EventEmitter<void>();
   @Output() exit = new EventEmitter<void>();
   countries: any = ['Украина', 'Белоруссия', 'Польша', 'Россия', 'Молдова'];
@@ -49,9 +48,11 @@ export class ChangeInfoComponent implements OnInit {
     }
   }
 
-  submitInfo() {
+  submitInfo(): void {
     this.chatAPIService.user.avatarId = this.user.avatarId;
-    this.submitForm.emit(Object.assign({}, this.form.value, {avatarId: this.user.avatarId, username: this.chatAPIService.user.username}));
+    this.submitForm.emit(Object.assign({}, this.form.value,
+      {avatarId: this.user.avatarId, username: this.chatAPIService.user.username}
+    ));
   }
 
   exitForm(): void {
@@ -60,19 +61,11 @@ export class ChangeInfoComponent implements OnInit {
     this.exit.emit();
   }
 
-  get formMail(): any {
-    return this.form.get('mail');
-  }
-
-  get formPhone(): any {
-    return this.form.get('phone');
-  }
-
-  getImage(avatar) {
+  getImage(avatar): string {
     return '/assets/' + avatar + '.svg';
   }
 
-  setActive(id) {
+  setActive(id: string): void {
     this.avatarId = id;
     this.user.avatarId = id;
     const active = document.getElementsByClassName('avatars');
@@ -85,7 +78,7 @@ export class ChangeInfoComponent implements OnInit {
     });
   }
 
-  setChooseAvatarView(gender) {
+  setChooseAvatarView(gender: string): void {
     this.showAvatars = true;
     this.user.gender = gender;
     if (gender === 'male') {
@@ -98,5 +91,13 @@ export class ChangeInfoComponent implements OnInit {
         this.setActive(this.user.avatarId);
       }, 100);
     }
+  }
+
+  get formMail() {
+    return this.form.get('mail');
+  }
+
+  get formPhone() {
+    return this.form.get('phone');
   }
 }

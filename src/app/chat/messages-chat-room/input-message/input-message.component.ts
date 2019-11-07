@@ -1,7 +1,8 @@
-import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ChatAPIService} from '../../../service/chatAPI/chat-api.service';
 import {InputMessageService} from '../../../service/inputMessage/input-message.service';
 import {ActivatedRoute} from '@angular/router';
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-input-message',
@@ -9,42 +10,44 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./input-message.component.css']
 })
 export class InputMessageComponent implements OnInit {
-
-  inputMessage: string;
   bold = {startTag: '<strong>', endTag: '</strong>'};
   italic = {startTag: '<i>', endTag: '</i>'};
   underline = {startTag: '<u>', endTag: '</u>'};
+  inputMessage: string;
 
   @HostListener('document:keydown', ['$event'])
   handleKeydownEvent(event: KeyboardEvent) {
     this.stringService.checkLength(this.inputMessage, event);
   }
 
-  @HostListener('document:keyup', ['$event'])
-  handleKeyupEvent(event: KeyboardEvent) {
+  @HostListener('document:keyup')
+  handleKeyupEvent() {
     this.stringService.updateStringInfo(this.inputMessage);
   }
 
-  constructor(private chatAPIService: ChatAPIService, private stringService: InputMessageService, private route: ActivatedRoute,) {
+  constructor(private chatAPIService: ChatAPIService,
+              private stringService: InputMessageService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(_ => {
+    this.route.params.subscribe(() => {
       this.inputMessage = null;
       this.stringService.reset();
     });
   }
 
-  sendMessage() {
+  sendMessage(): void {
     if (!!this.inputMessage.trim()) {
-      return this.chatAPIService.sendMessage(this.inputMessage).subscribe(_ => {
-        this.stringService.reset();
-        this.inputMessage = null;
-      });
+      this.chatAPIService.sendMessage(this.inputMessage).pipe(tap(() => {
+          this.stringService.reset();
+          this.inputMessage = null;
+        }
+      )).subscribe();
     }
   }
 
-  applyStyle(tag) {
+  applyStyle(tag): void {
     if (this.stringService.selection.start !== this.stringService.selection.end) {
       this.inputMessage = this.stringService.convert(this.inputMessage, tag);
     }

@@ -1,9 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Message} from '../../../interface/chat/message';
 import {Chatroom} from '../../../interface/chat/chatroom';
 import {ChatMessagesService} from '../../../service/chatMessages/chat-messages.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ChatRoomsService} from '../../../service/chatRooms/chat-rooms.service';
 
 @Component({
   selector: 'app-room',
@@ -11,42 +9,33 @@ import {ChatRoomsService} from '../../../service/chatRooms/chat-rooms.service';
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit, OnDestroy {
-
   @Input() room: Chatroom;
-  private routeParams;
   titleStyle = `containerName marginName name sairaRegular18`;
+  private routeParams;
 
-  constructor(private chatMessagesService: ChatMessagesService, private route: Router, private link: ActivatedRoute, private chatRoomsService: ChatRoomsService) {
-
+  constructor(private chatMessagesService: ChatMessagesService,
+              private route: Router,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.routeParams = this.link.params.subscribe(_ => {
+    this.routeParams = this.activatedRoute.params.subscribe(() => {
       this.setActive(ChatMessagesService.room.name);
     });
   }
 
-  // changeRoom() {
-  // }
-
-  setRouterLink() {
+  setRouterLink(): void {
     const link = '../chatroom/' + this.room.name.split(' ').join('');
     if (this.room.name === 'Main') {
-      ChatMessagesService.room = {
-        id: 'MAIN',
-        name: 'Main'
-      };
+      this.setRoom({chatroom_id: 'MAIN', chatroom_name: 'Main'});
     } else {
-      ChatMessagesService.room = {
-        id: this.room.chatroom_id,
-        name: this.room.name
-      };
+      this.setRoom({chatroom_id: this.room.chatroom_id, chatroom_name: this.room.name});
     }
     this.route.navigate([link]);
     this.setActive(this.room.name);
   }
 
-  setActive(chatName) {
+  setActive(chatName: string): void {
     const arrayChats = document.getElementsByClassName(this.titleStyle);
     Array.from(arrayChats).forEach((el: HTMLElement) => {
       if (chatName === el.innerText) {
@@ -61,4 +50,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     this.routeParams.unsubscribe();
   }
 
+  private setRoom(info): void {
+    ChatMessagesService.room.info = info;
+  }
 }

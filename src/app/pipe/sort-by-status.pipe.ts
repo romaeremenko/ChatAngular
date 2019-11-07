@@ -5,9 +5,7 @@ import {Member} from '../interface/chat/member';
   name: 'sortByStatus'
 })
 export class SortByStatusPipe implements PipeTransform {
-
-  transform(members: Member[]): any {
+  transform(members: Member[]): Member[] {
     return members.sort((a, b) => (a.status < b.status) ? 1 : -1);
   }
-
 }

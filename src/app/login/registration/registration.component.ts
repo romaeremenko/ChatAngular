@@ -1,7 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {AuthService} from '../../service/auth/auth.service';
 import {Router} from '@angular/router';
-import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-registration',
@@ -17,10 +16,10 @@ export class RegistrationComponent implements OnDestroy {
   }
 
   redirectLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate([this.login]);
   }
 
   ngOnDestroy() {
-    this.authService.responce = '';
+    this.authService.resetResponseField();
   }
 }

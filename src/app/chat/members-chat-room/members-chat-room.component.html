@@ -7,11 +7,9 @@
     </div>
   </div>
   <div class="chatMembers scroll">
-
     <div class="alignCenter" *ngFor="let member of members | async | sortByStatus">
       <app-member [member]="member"></app-member>
     </div>
-
   </div>
   <div class="emptyContainer"></div>
 </div>

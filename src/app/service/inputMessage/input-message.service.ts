@@ -4,12 +4,10 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class InputMessageService {
-
   public punctuationMarksAmount: number;
   public spacesAmount: number;
   public lettersAmount: number;
   public symbolsAmount: number;
-
   public selection = {
     start: 0,
     end: 0,
@@ -43,19 +41,29 @@ export class InputMessageService {
     this.symbolsAmount = input.length;
   }
 
-  selectionChange(ev: any) {
+  selectionChange(ev: any): void {
     this.selection.start = ev.target.selectionStart;
     this.selection.end = ev.target.selectionEnd;
   }
 
-  convert(input: string, {startTag, endTag}, start: number = this.selection.start, end: number = this.selection.end) {
+  convert(input: string, {startTag, endTag},
+          start: number = this.selection.start,
+          end: number = this.selection.end): string {
     return input.substring(0, start) + startTag + input.substring(start, end) + endTag + input.substring(end);
   }
 
-  reset() {
+  reset(): void {
     this.punctuationMarksAmount = 0;
     this.spacesAmount = 0;
     this.lettersAmount = 0;
     this.symbolsAmount = 0;
+  }
+
+  private isConsistent(input: string, event: KeyboardEvent): boolean | string {
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft' || event.key === 'Backspace' || input === null) {
+      return false;
+    } else if (!!input) {
+      return input.replace(/<[^>]+>/gm, '').length >= 500;
+    }
   }
 }

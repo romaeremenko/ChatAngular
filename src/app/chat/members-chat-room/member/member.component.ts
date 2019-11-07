@@ -1,5 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Chatroom} from '../../../interface/chat/chatroom';
+import {Component, Input, OnDestroy} from '@angular/core';
 import {Member} from '../../../interface/chat/member';
 import {ChatAPIService} from '../../../service/chatAPI/chat-api.service';
 
@@ -8,37 +7,33 @@ import {ChatAPIService} from '../../../service/chatAPI/chat-api.service';
   templateUrl: './member.component.html',
   styleUrls: ['./member.component.css']
 })
-export class MemberComponent implements OnInit, OnDestroy {
+export class MemberComponent implements OnDestroy {
+  @Input() member: Member;
   titleStyle = `containerName marginName name sairaRegular18`;
   createRoom = false;
   subscr;
   title = '';
 
-  @Input() member: Member;
-
   constructor(private chatAPIService: ChatAPIService) {
   }
 
-  ngOnInit() {
-  }
-
-  submitForm(title: string) {
-    this.subscr = this.chatAPIService.createChatRoom(this.member.username, title).subscribe(_ => {
-    }, error => {
+  submitForm(title: string): void {
+    this.subscr = this.chatAPIService.createChatRoom(this.member.username, title).subscribe(() => {
+    }, () => {
       alert('Чат с пользователем уже существует');
     });
     this.toggleCreateRoom();
   }
 
-  createRoomWindow() {
+  createRoomWindow(): void {
     this.toggleCreateRoom();
   }
 
-  exit() {
+  exit(): void {
     this.toggleCreateRoom();
   }
 
-  toggleCreateRoom() {
+  toggleCreateRoom(): void {
     this.createRoom = !this.createRoom;
   }
 

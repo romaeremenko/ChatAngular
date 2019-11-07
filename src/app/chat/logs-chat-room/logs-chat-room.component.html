@@ -1,16 +1,14 @@
-  <div class="chatTabs">
-    <div class="chatNameHeader alignCenter">
-      <div class="chatName sairaRegular18">
-        ЧАТЫ
-      </div>
-    </div>
-    <div id="chatRooms" class="chats scroll">
-      <ng-container *ngFor="let room of rooms | async">
-          <app-room [room]="room"></app-room>
-      </ng-container>
-      <!--- Ниже блок, чтобы все чаты вмещались в видимую область --->
-      <div id="emptyRoom" class="containerForAvatar"></div>
+<div class="chatTabs">
+  <div class="chatNameHeader alignCenter">
+    <div class="chatName sairaRegular18">
+      ЧАТЫ
     </div>
   </div>
-  <router-outlet></router-outlet>
+  <div id="chatRooms" class="chats scroll">
+    <ng-container *ngFor="let room of rooms | async">
+      <app-room [room]="room"></app-room>
+    </ng-container>
+  </div>
+</div>
+<router-outlet></router-outlet>
 

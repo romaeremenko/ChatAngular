@@ -44,14 +44,6 @@
           <input type="radio" name="gender" value="male" formControlName="gender"> Мужской<br>
           <input type="radio" name="gender" value="female" formControlName="gender"> Женский<br>
         </div>
-        <!--<div>-->
-          <!--<label>Выберите аватар </label>-->
-          <!--<div class="avatarsBlock">-->
-            <!--<ng-container *ngFor="let avatar of avatars">-->
-              <!--<div class="avatars" [ngStyle]="{'background-image': 'url(' + getImage(avatar) + ')'}" (click)="setActive(avatar)"></div>-->
-            <!--</ng-container>-->
-          <!--</div>-->
-        <!--</div>-->
         <ng-container *ngIf="showAvatars">
           <div>
             <label>Выберите аватар </label>

@@ -1,4 +1,4 @@
-export interface Info {
+export interface InfoAboutUser {
   gender: string;
   avatarId: string;
   about: string;

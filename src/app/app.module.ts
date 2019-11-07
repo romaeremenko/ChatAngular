@@ -1,12 +1,11 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ChatComponent} from './chat/chat.component';
 import {LoginComponent} from './login/login.component';
 import {RegistrationComponent} from './login/registration/registration.component';
-import {AuthGuard} from './auth.guard';
+import {ChatGuard} from './chat.guard';
 import {HttpClientModule} from '@angular/common/http';
 import {ChatAPIService} from './service/chatAPI/chat-api.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -24,11 +23,9 @@ import {InputMessageComponent} from './chat/messages-chat-room/input-message/inp
 import {InputMessageService} from './service/inputMessage/input-message.service';
 import { RoomComponent } from './chat/logs-chat-room/room/room.component';
 import { MemberComponent } from './chat/members-chat-room/member/member.component';
-
-import { AngularResizedEventModule } from 'angular-resize-event';
 import { CreateRoomComponent } from './chat/members-chat-room/create-room/create-room.component';
-import {ErrorsService} from './service/errors/errors.service';
 import { ChangeInfoComponent } from './chat/header-chat-room/change-info/change-info.component';
+import { AngularResizedEventModule } from 'angular-resize-event';
 
 @NgModule({
   declarations: [
@@ -58,13 +55,12 @@ import { ChangeInfoComponent } from './chat/header-chat-room/change-info/change-
     AngularResizedEventModule
   ],
   providers: [
-    AuthGuard,
+    ChatGuard,
     ChatAPIService,
     ChatMembersService,
     ChatMessagesService,
     CompareDate,
     InputMessageService,
-    ErrorsService,
   ],
   bootstrap: [AppComponent]
 })

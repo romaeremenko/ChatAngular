@@ -2,7 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ChatAPIService} from '../../service/chatAPI/chat-api.service';
 import {ChatMessagesService} from '../../service/chatMessages/chat-messages.service';
 import {map} from 'rxjs/operators';
-import {interval} from 'rxjs';
+import {interval, Subscription} from 'rxjs';
+import {InfoAboutUser} from '../../interface/chat/infoAboutUser';
 
 @Component({
   selector: 'app-header-chat-room',
@@ -10,64 +11,61 @@ import {interval} from 'rxjs';
   styleUrls: ['./header-chat-room.component.css']
 })
 export class HeaderChatRoomComponent implements OnInit, OnDestroy {
-
   createChangeInfo = false;
-  clockObservable;
-  onlineTimeObservable;
   onlineTime = 0;
   time;
+  private subscribtions: Subscription[] = [];
 
   constructor(private chatAPIService: ChatAPIService, private chatMessagesService: ChatMessagesService) {
   }
 
   ngOnInit() {
-    this.clockObservable = interval(1000).pipe(
-      map(_ => {
+    this.subscribtions.push(interval(1000).pipe(
+      map(() => {
         this.time = Date.now();
       })
-    ).subscribe();
-    this.onlineTimeObservable = interval(1000 * 60 * 5).pipe(
-      map(_ => {
+    ).subscribe());
+    this.subscribtions.push(interval(1000 * 60 * 5).pipe(
+      map(() => {
         this.onlineTime += 5;
       })
-    ).subscribe();
+    ).subscribe());
   }
 
-  logout() {
-    this.chatAPIService.logout(ChatMessagesService.room.id, ChatMessagesService.room.name).subscribe(_ => {
+  logout(): void {
+    this.chatAPIService.logout(ChatMessagesService.room.id, ChatMessagesService.room.name).subscribe(() => {
     });
     window.location.reload();
   }
 
-  submitForm(information) {
-    this.chatAPIService.postInfo(information).subscribe(_ => {
+  submitForm(information: InfoAboutUser): void {
+    this.chatAPIService.postInfo(information).subscribe(() => {
     });
     this.toggleChangeInfoWindow();
   }
 
-  createChangeInfoWindow() {
+  createChangeInfoWindow(): void {
     this.chatAPIService.getInfo().subscribe(info => {
       this.chatAPIService.userInfo = info;
       this.toggleChangeInfoWindow();
     });
   }
 
-  exit() {
+  exit(): void {
     this.toggleChangeInfoWindow();
   }
 
-  toggleChangeInfoWindow() {
+  toggleChangeInfoWindow(): void {
     this.createChangeInfo = !this.createChangeInfo;
   }
 
-  get getUserAvatar() {
+  ngOnDestroy(): void {
+    this.subscribtions.forEach(subscribtion => subscribtion.unsubscribe());
+  }
+
+  get getUserAvatar(): string {
     if (!!this.chatAPIService.user.avatarId) {
       return 'url(/assets/' + this.chatAPIService.user.avatarId + '.svg)';
     }
-  }
-
-  ngOnDestroy() {
-    this.clockObservable.unsubscribe();
-    this.onlineTimeObservable.unsubscribe();
   }
 }

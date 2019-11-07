@@ -1,13 +1,9 @@
-import {AfterViewChecked, AfterViewInit, Component, DoCheck, ElementRef, OnChanges, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ChatMessagesService} from '../../service/chatMessages/chat-messages.service';
 import {InputMessageService} from '../../service/inputMessage/input-message.service';
 import {ActivatedRoute} from '@angular/router';
-import {switchMap} from 'rxjs/operators';
-import {Message} from '../../interface/chat/message';
-import {CompareDate} from '../../service/compareDate/compare-date.service';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {ResizedEvent} from 'angular-resize-event';
-import {ChatRoomsService} from '../../service/chatRooms/chat-rooms.service';
 
 @Component({
   selector: 'app-messages-chat-room',
@@ -17,44 +13,36 @@ import {ChatRoomsService} from '../../service/chatRooms/chat-rooms.service';
 export class MessagesChatRoomComponent implements OnInit, OnDestroy {
   @ViewChild('messagesRef', {static: false}) private messagesRef: ElementRef;
   @ViewChild('messageRef', {static: false}) private messageRef: ElementRef;
-
   private messages = ChatMessagesService.messages;
   private chatroomNameHeader = '';
   private chatRoom;
-  private routeParams;
+  private subscribtions: Subscription[] = [];
 
   constructor(private chatMessagesService: ChatMessagesService,
               private stringService: InputMessageService,
               private route: ActivatedRoute,
   ) {
+    this.chatRoom = this.chatMessagesService.getMessages();
   }
 
   ngOnInit() {
-    this.routeParams = this.route.params.subscribe(param => {
-      if (!!this.chatRoom) {
-        this.chatRoom.unsubscribe();
-        this.stringService.reset();
-      }
-      this.chatRoom = this.chatMessagesService.getMessages();
+    this.subscribtions.push(this.route.params.subscribe(() => {
+      this.stringService.reset();
+      this.chatRoom.unsubscribe();
+      this.subscribtions.push(this.chatRoom = this.chatMessagesService.getMessages());
       this.chatroomNameHeader = ChatMessagesService.room.name;
-    });
+    }));
   }
 
-  onResized(event: ResizedEvent) {
+  onResized(event: ResizedEvent): void {
     this.scrollToBottom();
   }
 
   scrollToBottom(): void {
-    try {
-      this.messagesRef.nativeElement.scrollTo(0, this.messageRef.nativeElement.getBoundingClientRect().top);
-    } catch (err) {
-      console.log(err);
-    }
+    this.messagesRef.nativeElement.scrollTo(0, this.messageRef.nativeElement.getBoundingClientRect().top);
   }
 
   ngOnDestroy() {
-    this.chatRoom.unsubscribe();
-    this.routeParams.unsubscribe();
+    this.subscribtions.forEach(subscribtion => subscribtion.unsubscribe());
   }
-
 }

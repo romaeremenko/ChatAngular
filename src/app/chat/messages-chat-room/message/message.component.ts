@@ -14,7 +14,6 @@ import {ChatAPIService} from '../../../service/chatAPI/chat-api.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageComponent {
-
   @Input() messageFromUser: Message;
 
   cashResult = '';
@@ -31,12 +30,16 @@ export class MessageComponent {
     return this.messageFromUser.username === this.chatAPIService.user.username;
   }
 
-  get getUserAvatar() {
+  get getUserAvatar(): string {
     if (this.messageFromUser.username === this.chatAPIService.user.username) {
       return 'url(/assets/' + this.chatAPIService.user.avatarId + '.svg)';
     }
     if (!!this.messageFromUser.avatarId) {
       return 'url(/assets/' + this.messageFromUser.avatarId + '.svg)';
     }
+  }
+
+  get newDate(): string {
+    return this.dateService.compareDate(this.messageFromUser.datetime);
   }
 }

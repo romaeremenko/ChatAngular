@@ -1,7 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
-import {ChatAPIService} from '../../service/chatAPI/chat-api.service';
-import {Member} from '../../interface/chat/member';
-import {User} from '../../interface/chat/users';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {ChatMembersService} from '../../service/chatMembers/chat-members.service';
 
 @Component({
@@ -9,33 +6,21 @@ import {ChatMembersService} from '../../service/chatMembers/chat-members.service
   templateUrl: './members-chat-room.component.html',
   styleUrls: ['./members-chat-room.component.css']
 })
-export class MembersChatRoomComponent implements OnInit, OnDestroy {
-  private chatMembers;
-
+export class MembersChatRoomComponent implements OnInit {
   members = ChatMembersService.members;
+  private chatMembers;
 
   constructor(private chatMembersService: ChatMembersService, private elRef: ElementRef) {
     this.chatMembersService.getMembers();
-    // ChatMembersService.members.subscribe(members => {
-    //   // this.chatMembers = members;
-    //   //console.log(members);
-    // });
   }
 
   ngOnInit() {
-    // console.log('members');
     ChatMembersService.members.subscribe(members => {
       this.chatMembers = members;
-      //console.log(members);
     });
   }
 
-  countOnlineMembers(): void {
+  countOnlineMembers(): number {
     return this.elRef.nativeElement.querySelectorAll('.online').length;
   }
-
-  ngOnDestroy() {
-    // this.chatMembers.unsubscribe();
-  }
-
 }
