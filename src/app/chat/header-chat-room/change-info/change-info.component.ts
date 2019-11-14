@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ChatAPIService} from '../../../service/chatAPI/chat-api.service';
+import {ChatService} from '../../../service/chatAPI/chat.service';
 
 @Component({
   selector: 'app-change-info',
@@ -21,7 +21,7 @@ export class ChangeInfoComponent implements OnInit {
   avatarId;
   avatars;
 
-  constructor(private chatAPIService: ChatAPIService) {
+  constructor(private chatAPIService: ChatService) {
   }
 
   ngOnInit() {

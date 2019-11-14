@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import {Message} from '../../../interface/chat/message';
 import {CompareDate} from '../../../service/compareDate/compare-date.service';
-import {ChatAPIService} from '../../../service/chatAPI/chat-api.service';
+import {ChatService} from '../../../service/chatAPI/chat.service';
 
 @Component({
   selector: 'app-message',
@@ -16,14 +16,7 @@ import {ChatAPIService} from '../../../service/chatAPI/chat-api.service';
 export class MessageComponent {
   @Input() messageFromUser: Message;
 
-  cashResult = '';
-
-  constructor(private dateService: CompareDate, private chatAPIService: ChatAPIService) {
-
-  }
-
-  get newDate() {
-    return this.dateService.compareDate(this.messageFromUser.datetime);
+  constructor(private dateService: CompareDate, private chatAPIService: ChatService) {
   }
 
   messageFromMyself(): boolean {

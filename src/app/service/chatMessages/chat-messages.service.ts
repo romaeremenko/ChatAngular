@@ -1,14 +1,12 @@
 import {Injectable, Inject} from '@angular/core';
 import {BehaviorSubject, Subscription, timer} from 'rxjs';
-import {ChatAPIService} from '../chatAPI/chat-api.service';
+import {ChatService} from '../chatAPI/chat.service';
 import {Message} from '../../interface/chat/message';
 import {CompareDate} from '../compareDate/compare-date.service';
 import {DOCUMENT} from '@angular/common';
 import {switchMap} from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ChatMessagesService {
   static messages = new BehaviorSubject([]);
   static messagesLength = 0;
@@ -22,7 +20,9 @@ export class ChatMessagesService {
   };
   private avatarId;
 
-  constructor(private chatAPIService: ChatAPIService, private dateService: CompareDate, @Inject(DOCUMENT) private document: HTMLDocument) {
+  constructor(private chatAPIService: ChatService,
+              private compareDate: CompareDate,
+              @Inject(DOCUMENT) private document: HTMLDocument) {
   }
 
   public getMessages(): Subscription {

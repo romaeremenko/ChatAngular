@@ -1,8 +1,9 @@
 import {Component, OnDestroy} from '@angular/core';
-import {AuthService} from '../service/auth/auth.service';
+import {AuthorizationUserService} from '../service/auth/authorization-user.service';
 import {Router} from '@angular/router';
-import {ChatAPIService} from '../service/chatAPI/chat-api.service';
+import {ChatService} from '../service/chatAPI/chat.service';
 import {Location} from '@angular/common';
+import {AuthService} from '../service/chatAPI/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,23 +12,23 @@ import {Location} from '@angular/common';
 })
 export class LoginComponent implements OnDestroy {
   private registration = '/registration';
+  user = {
+    loginField: 'andreyyaz',
+    passwordField: '1234'
+  }
 
   constructor(
-    private authService: AuthService,
+    private authorizationUserService: AuthorizationUserService,
     private router: Router,
-    private chatAPIService: ChatAPIService,
+    private chatAPIService: ChatService,
     private location: Location) {
   }
 
-  redirectReg() {
-    this.router.navigate(['/registration']);
+  redirectReg(): void {
+    this.router.navigate([this.registration]);
   }
 
-  isChatRouteActivated() {
-    this.router.navigate(['/chatroom']);
-  }
-
-  ngOnDestroy() {
-    this.authService.responce = '';
+  ngOnDestroy(): void {
+    this.authorizationUserService.resetErrorField();
   }
 }

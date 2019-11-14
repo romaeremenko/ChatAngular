@@ -1,9 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ChatAPIService} from '../../service/chatAPI/chat-api.service';
+import {ChatService} from '../../service/chatAPI/chat.service';
 import {ChatMessagesService} from '../../service/chatMessages/chat-messages.service';
 import {map} from 'rxjs/operators';
 import {interval, Subscription} from 'rxjs';
 import {InfoAboutUser} from '../../interface/chat/infoAboutUser';
+import {LocalStorageService} from '../../service/localStorage/local-storage.service';
+import {AuthService} from '../../service/chatAPI/auth.service';
 
 @Component({
   selector: 'app-header-chat-room',
@@ -16,7 +18,10 @@ export class HeaderChatRoomComponent implements OnInit, OnDestroy {
   time;
   private subscribtions: Subscription[] = [];
 
-  constructor(private chatAPIService: ChatAPIService, private chatMessagesService: ChatMessagesService) {
+  constructor(private chatAPIService: ChatService,
+              private authService: AuthService,
+              private chatMessagesService: ChatMessagesService,
+              private localStorageService: LocalStorageService) {
   }
 
   ngOnInit() {
@@ -33,7 +38,10 @@ export class HeaderChatRoomComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
-    this.chatAPIService.logout(ChatMessagesService.room.id, ChatMessagesService.room.name).subscribe(() => {
+    console.log(ChatMessagesService.room.id, ChatMessagesService.room.name);
+    this.localStorageService.deleteUserLoggedIn();
+    console.log(this.chatAPIService.user);
+    this.authService.logout(this.chatAPIService.user.username, ChatMessagesService.room.id, ChatMessagesService.room.name).subscribe(() => {
     });
     window.location.reload();
   }

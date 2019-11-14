@@ -8,12 +8,6 @@ import {Component, Input} from '@angular/core';
 export class AvatarComponent {
   @Input() avatar: string;
 
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
   get getUserAvatar(): string {
     if (!!this.avatar) {
       return 'url(/assets/' + this.avatar + '.svg)';

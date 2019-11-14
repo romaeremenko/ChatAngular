@@ -1,5 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {ChatAPIService} from '../../../service/chatAPI/chat-api.service';
+import {ChatService} from '../../../service/chatAPI/chat.service';
 import {InputMessageService} from '../../../service/inputMessage/input-message.service';
 import {ActivatedRoute} from '@angular/router';
 import {tap} from 'rxjs/operators';
@@ -25,7 +25,7 @@ export class InputMessageComponent implements OnInit {
     this.stringService.updateStringInfo(this.inputMessage);
   }
 
-  constructor(private chatAPIService: ChatAPIService,
+  constructor(private chatAPIService: ChatService,
               private stringService: InputMessageService,
               private route: ActivatedRoute) {
   }

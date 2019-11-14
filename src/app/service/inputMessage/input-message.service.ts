@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class InputMessageService {
   public punctuationMarksAmount: number;
   public spacesAmount: number;
@@ -11,15 +9,7 @@ export class InputMessageService {
   public selection = {
     start: 0,
     end: 0,
-  }
-
-  private isConsistent(input: string, event): boolean {
-    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft' || event.key === 'Backspace' || input === null) {
-      return false;
-    } else if (input !== undefined) {
-      return input.replace(/<[^>]+>/gm, '').length >= 500;
-    }
-  }
+  };
 
   checkLength(input: string, event: KeyboardEvent): void {
     if (this.isConsistent(input, event)) {

@@ -1,6 +1,7 @@
 import {Component, OnDestroy} from '@angular/core';
-import {AuthService} from '../../service/auth/auth.service';
+import {AuthorizationUserService} from '../../service/auth/authorization-user.service';
 import {Router} from '@angular/router';
+import {AuthService} from '../../service/chatAPI/auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -8,11 +9,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnDestroy {
+  private login = '/login';
+  private loginField = 'andreyyaz';
+  private passwordField = '1234';
 
-  constructor(private authService: AuthService, private router: Router, private location: Location) {
-    if (authService.isAuth) {
-      this.location.back();
-    }
+  constructor(
+    private authorizationUserService: AuthorizationUserService,
+    private router: Router) {
   }
 
   redirectLogin() {
@@ -20,6 +23,6 @@ export class RegistrationComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.authService.resetResponseField();
+    this.authorizationUserService.resetErrorField();
   }
 }

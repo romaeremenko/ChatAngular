@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ChatAPIService } from './chat-api.service';
+import { AuthService } from './auth.service';
 
-describe('ChatAPIService', () => {
+describe('AuthorizationUserService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ChatAPIService = TestBed.get(ChatAPIService);
+    const service: AuthService = TestBed.get(AuthService);
     expect(service).toBeTruthy();
   });
 });

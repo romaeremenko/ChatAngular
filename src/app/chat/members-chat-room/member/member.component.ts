@@ -1,6 +1,6 @@
 import {Component, Input, OnDestroy} from '@angular/core';
 import {Member} from '../../../interface/chat/member';
-import {ChatAPIService} from '../../../service/chatAPI/chat-api.service';
+import {ChatService} from '../../../service/chatAPI/chat.service';
 
 @Component({
   selector: 'app-member',
@@ -14,7 +14,7 @@ export class MemberComponent implements OnDestroy {
   subscr;
   title = '';
 
-  constructor(private chatAPIService: ChatAPIService) {
+  constructor(private chatAPIService: ChatService) {
   }
 
   submitForm(title: string): void {

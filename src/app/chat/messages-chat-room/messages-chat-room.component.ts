@@ -4,6 +4,7 @@ import {InputMessageService} from '../../service/inputMessage/input-message.serv
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {ResizedEvent} from 'angular-resize-event';
+import {Message} from '../../interface/chat/message';
 
 @Component({
   selector: 'app-messages-chat-room',
@@ -44,5 +45,9 @@ export class MessagesChatRoomComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscribtions.forEach(subscribtion => subscribtion.unsubscribe());
+  }
+
+  trackByIndex(index: number, message: Message): number {
+    return index;
   }
 }
