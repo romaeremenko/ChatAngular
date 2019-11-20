@@ -1,12 +1,12 @@
 .members {
-  width: 25%;
+  /*width: 25%;*/
   background: #FFF;
-  position: absolute;
+  /*position: absolute;*/
 }
 
 .chatNameHeader {
-  display: inline-flex;
-  position: absolute;
+  /*display: inline-flex;*/
+  /*position: absolute;*/
   top: 0;
   z-index: 2;
   color: #000000;
@@ -16,21 +16,22 @@
 }
 
 .chatName {
-  position: absolute;
-  margin: auto;
+  /*position: absolute;*/
+  margin: 0 5px;
 }
 
 .onlineMembers {
   right: 0;
-  position: absolute;
-  margin-right: 5vh;
+  /*position: absolute;*/
+  /*margin-right: 5vh;*/
   color: rgba(0, 0, 0, .54);
 }
 
 .chatMembers {
   background: #FFF;
   height: 87vh;
-  margin-top: 25px;
+  /*margin-top: 25px;*/
+  padding-left: 28%;
 }
 
 .alignCenter {
@@ -41,4 +42,20 @@
 
 .emptyContainer {
   height: 2%;
+}
+
+@media screen and (max-width: 768px) {
+  .avatar {
+    padding: 0 5px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .chatName {
+    position: initial;
+  }
+
+  .onlineMembers {
+    /*margin-right: 1.5vh;*/
+  }
 }

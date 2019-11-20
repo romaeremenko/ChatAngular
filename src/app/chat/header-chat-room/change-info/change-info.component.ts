@@ -1,6 +1,11 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ChatService} from '../../../service/chatAPI/chat.service';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output
+} from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChatService } from '../../../service/chatAPI/chat.service';
 
 @Component({
   selector: 'app-change-info',
@@ -10,7 +15,13 @@ import {ChatService} from '../../../service/chatAPI/chat.service';
 export class ChangeInfoComponent implements OnInit {
   @Output() submitForm = new EventEmitter<void>();
   @Output() exit = new EventEmitter<void>();
-  countries: any = ['Украина', 'Белоруссия', 'Польша', 'Россия', 'Молдова'];
+  countries: any = [
+    'Украина',
+    'Белоруссия',
+    'Польша',
+    'Россия',
+    'Молдова'
+  ];
   menAvatars = ['01', '02', '03', '04', '05', '06'];
   womanAvatars = ['07', '08', '09', '10', '11', '12'];
   user = this.chatAPIService.userInfo;
@@ -21,8 +32,7 @@ export class ChangeInfoComponent implements OnInit {
   avatarId;
   avatars;
 
-  constructor(private chatAPIService: ChatService) {
-  }
+  constructor(private chatAPIService: ChatService) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -36,7 +46,7 @@ export class ChangeInfoComponent implements OnInit {
       mail: new FormControl(this.user.mail, [
         Validators.email,
         Validators.required
-      ]),
+      ])
     });
     this.previousAvatarId = this.user.avatarId;
     this.previousGender = this.user.gender;
@@ -50,9 +60,12 @@ export class ChangeInfoComponent implements OnInit {
 
   submitInfo(): void {
     this.chatAPIService.user.avatarId = this.user.avatarId;
-    this.submitForm.emit(Object.assign({}, this.form.value,
-      {avatarId: this.user.avatarId, username: this.chatAPIService.user.username}
-    ));
+    this.submitForm.emit(
+      Object.assign({}, this.form.value, {
+        avatarId: this.user.avatarId,
+        username: this.chatAPIService.user.username
+      })
+    );
   }
 
   exitForm(): void {

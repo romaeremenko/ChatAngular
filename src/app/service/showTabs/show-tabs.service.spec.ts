@@ -1,14 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ChatMembersService } from './chat-members.service';
+import { ShowTabsService } from './show-tabs.service';
 
-describe('ChatMembersService', () => {
+describe('ShowTabsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ChatMembersService = TestBed.get(
-      ChatMembersService
-    );
+    const service: ShowTabsService = TestBed.get(ShowTabsService);
     expect(service).toBeTruthy();
   });
 });

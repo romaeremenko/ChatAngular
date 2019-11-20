@@ -1,8 +1,8 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {ChatService} from '../../../service/chatAPI/chat.service';
-import {InputMessageService} from '../../../service/inputMessage/input-message.service';
-import {ActivatedRoute} from '@angular/router';
-import {tap} from 'rxjs/operators';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ChatService } from '../../../service/chatAPI/chat.service';
+import { InputMessageService } from '../../../service/inputMessage/input-message.service';
+import { ActivatedRoute } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-input-message',
@@ -10,9 +10,9 @@ import {tap} from 'rxjs/operators';
   styleUrls: ['./input-message.component.css']
 })
 export class InputMessageComponent implements OnInit {
-  bold = {startTag: '<strong>', endTag: '</strong>'};
-  italic = {startTag: '<i>', endTag: '</i>'};
-  underline = {startTag: '<u>', endTag: '</u>'};
+  bold = { startTag: '<strong>', endTag: '</strong>' };
+  italic = { startTag: '<i>', endTag: '</i>' };
+  underline = { startTag: '<u>', endTag: '</u>' };
   inputMessage: string;
 
   @HostListener('document:keydown', ['$event'])
@@ -25,10 +25,11 @@ export class InputMessageComponent implements OnInit {
     this.stringService.updateStringInfo(this.inputMessage);
   }
 
-  constructor(private chatAPIService: ChatService,
-              private stringService: InputMessageService,
-              private route: ActivatedRoute) {
-  }
+  constructor(
+    private chatAPIService: ChatService,
+    private stringService: InputMessageService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe(() => {
@@ -39,17 +40,27 @@ export class InputMessageComponent implements OnInit {
 
   sendMessage(): void {
     if (!!this.inputMessage.trim()) {
-      this.chatAPIService.sendMessage(this.inputMessage).pipe(tap(() => {
-          this.stringService.reset();
-          this.inputMessage = null;
-        }
-      )).subscribe();
+      this.chatAPIService
+        .sendMessage(this.inputMessage)
+        .pipe(
+          tap(() => {
+            this.stringService.reset();
+            this.inputMessage = null;
+          })
+        )
+        .subscribe();
     }
   }
 
   applyStyle(tag): void {
-    if (this.stringService.selection.start !== this.stringService.selection.end) {
-      this.inputMessage = this.stringService.convert(this.inputMessage, tag);
+    if (
+      this.stringService.selection.start !==
+      this.stringService.selection.end
+    ) {
+      this.inputMessage = this.stringService.convert(
+        this.inputMessage,
+        tag
+      );
     }
   }
 }

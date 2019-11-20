@@ -1,5 +1,5 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
-import {ChatMembersService} from '../../service/chatMembers/chat-members.service';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { ChatMembersService } from '../../service/chatMembers/chat-members.service';
 
 @Component({
   selector: 'app-members-chat-room',
@@ -10,7 +10,10 @@ export class MembersChatRoomComponent implements OnInit {
   members = ChatMembersService.members;
   private chatMembers;
 
-  constructor(private chatMembersService: ChatMembersService, private elRef: ElementRef) {
+  constructor(
+    private chatMembersService: ChatMembersService,
+    private elRef: ElementRef
+  ) {
     this.chatMembersService.getMembers();
   }
 
@@ -21,6 +24,7 @@ export class MembersChatRoomComponent implements OnInit {
   }
 
   countOnlineMembers(): number {
-    return this.elRef.nativeElement.querySelectorAll('.online').length;
+    return this.elRef.nativeElement.querySelectorAll('.online')
+      .length;
   }
 }

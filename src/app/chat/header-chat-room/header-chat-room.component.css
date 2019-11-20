@@ -1,7 +1,5 @@
 .header {
   display: flex;
-  min-height: 75px;
-  max-height: 76px;
   background: url("../../images/logo.svg") #FFB800 no-repeat center;
   filter: drop-shadow(4px 0px 4px hsl(0, 0%, 60%));
 }
@@ -14,7 +12,7 @@
 
 .onlineTime {
   margin-right: 1%;
-  margin-left: auto;
+  margin-left: 7%;
 }
 
 .containerForProfile {
@@ -47,10 +45,8 @@
   top: 0;
   right: 0;
   position: absolute;
-  max-width: 26px;
-  min-width: 30px;
-  max-height: 26px;
-  min-height: 30px;
+  width: 30px;
+  height: 30px;
   -webkit-border-radius: 18px;
   -moz-border-radius: 18px;
   border-radius: 18px;
@@ -61,14 +57,11 @@
 }
 
 .containerForInfo {
-  max-width: 176px;
-  min-width: 176px;
   margin: auto 0;
 }
 
 .containerName {
-  max-width: 176px;
-  min-width: 176px;
+  width: 176px;
   display: inline-flex;
 }
 
@@ -79,10 +72,8 @@
 }
 
 .changeInfo {
-  max-width: 176px;
-  min-width: 176px;
-  max-height: 23px;
-  min-height: 23px;
+  height: 23px;
+  width: 160px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
@@ -96,8 +87,9 @@
 }
 
 .globalTime {
-  min-width: 5%;
-  max-width: 5%;
+  padding: 0 5px;
+  width: 5%;
+  height: inherit;
   background: #FF6200;
   color: #FFFFFF;
   overflow: hidden;
@@ -108,3 +100,61 @@
   justify-content: center;
   align-items: center;
 }
+
+@media screen and (max-width: 768px) {
+  .containerName {
+    width: 176px;
+    display: block;
+    padding-bottom: 1px;
+  }
+
+  .onlineTime {
+    margin-left: 0;
+  }
+
+  .globalTime {
+    width: 10vh;
+  }
+
+  .name {
+    margin: 0;
+  }
+
+  .account {
+    padding: 0 10px;
+    height: inherit;
+    width: 25vh;
+  }
+
+  .exit {
+    margin-top: 1.5vh;
+    margin-right: 12vh;
+    position: fixed;
+    width: 25px;
+    height: 25px;
+  }
+
+  .changeInfo button {
+    font-size: 8px;
+    height: 10px;
+  }
+
+  .changeInfo {
+    width: 115px;
+    height: 12px;
+    border-radius: 3px;
+  }
+
+  .header {
+    height: 10vh;
+  }
+
+  .alignCenter {
+    margin-top: 0;
+  }
+
+  .containerForAvatar {
+    margin: 0 5px;
+  }
+}
+

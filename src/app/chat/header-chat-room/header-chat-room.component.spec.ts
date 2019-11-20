@@ -1,4 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed
+} from '@angular/core/testing';
 
 import { HeaderChatRoomComponent } from './header-chat-room.component';
 
@@ -8,9 +12,8 @@ describe('HeaderChatRoomComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderChatRoomComponent ]
-    })
-    .compileComponents();
+      declarations: [HeaderChatRoomComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

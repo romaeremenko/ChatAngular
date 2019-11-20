@@ -106,22 +106,14 @@ input.ng-dirty.ng-invalid {
   border: 1px solid red;
 }
 
-/*input[type=text],select .ng-invalid {*/
-  /*border: 1px solid red;*/
-/*}*/
-/*input[type=text],select .ng-valid{*/
-  /*border: 1px solid green;*/
-/*}*/
-
 #cover-div div {
   padding: 12px 0 0 0;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  /* display: none; <- Crashes Chrome on hover */
   -webkit-appearance: none;
-  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  margin: 0;
 }
 
 input[type=number] {
@@ -139,11 +131,7 @@ input[type=number] {
   width: 70px;
   height: 40px;
   margin: 2%;
-  /*background-image: url("../../../images/man/02.svg");*/
-  /*width: 7vh;*/
-  /*height: 6vh;*/
   border-radius: 50%;
-  /*margin: 1%;*/
   background-color: #F28E8E;
 }
 

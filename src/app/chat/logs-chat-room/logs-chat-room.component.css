@@ -1,12 +1,10 @@
 .chatTabs {
-  min-width: 45vh;
   background: #FFF;
   height: 100vh;
 }
 
 .chatNameHeader {
-  display: inline-flex;
-  position: absolute;
+  display: inherit;
   top: 0;
   z-index: 2;
   color: #000000;
@@ -27,20 +25,19 @@
 }
 
 .chatName {
-  position: absolute;
   margin: auto;
 }
 
 .chats {
   background: #FFF;
   height: 87vh;
-  margin-top: 25px;
+  width: 100%;
 }
 
 .chatTabs .alignLeft.active {
   background: #FFF6C6 !important;
 }
 
-.chatTabs .alignLeft:hover {
+.chatTabs .alignLeft:hover, .chatTabs .alignLeft:focus {
   background: rgba(255, 246, 198, .5);
 }

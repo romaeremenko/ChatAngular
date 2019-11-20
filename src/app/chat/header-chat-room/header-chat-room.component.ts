@@ -1,11 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ChatService} from '../../service/chatAPI/chat.service';
-import {ChatMessagesService} from '../../service/chatMessages/chat-messages.service';
-import {map} from 'rxjs/operators';
-import {interval, Subscription} from 'rxjs';
-import {InfoAboutUser} from '../../interface/chat/infoAboutUser';
-import {LocalStorageService} from '../../service/localStorage/local-storage.service';
-import {AuthService} from '../../service/chatAPI/auth.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChatService } from '../../service/chatAPI/chat.service';
+import { ChatMessagesService } from '../../service/chatMessages/chat-messages.service';
+import { map } from 'rxjs/operators';
+import { interval, Subscription } from 'rxjs';
+import { InfoAboutUser } from '../../interface/chat/infoAboutUser';
+import { LocalStorageService } from '../../service/localStorage/local-storage.service';
+import { AuthService } from '../../service/chatAPI/auth.service';
+import { ShowTabsService } from '../../service/showTabs/show-tabs.service';
 
 @Component({
   selector: 'app-header-chat-room',
@@ -18,37 +19,49 @@ export class HeaderChatRoomComponent implements OnInit, OnDestroy {
   time;
   private subscribtions: Subscription[] = [];
 
-  constructor(private chatAPIService: ChatService,
-              private authService: AuthService,
-              private chatMessagesService: ChatMessagesService,
-              private localStorageService: LocalStorageService) {
-  }
+  constructor(
+    private chatAPIService: ChatService,
+    private authService: AuthService,
+    private chatMessagesService: ChatMessagesService,
+    private localStorageService: LocalStorageService,
+    private showTabsService: ShowTabsService
+  ) {}
 
   ngOnInit() {
-    this.subscribtions.push(interval(1000).pipe(
-      map(() => {
-        this.time = Date.now();
-      })
-    ).subscribe());
-    this.subscribtions.push(interval(1000 * 60 * 5).pipe(
-      map(() => {
-        this.onlineTime += 5;
-      })
-    ).subscribe());
+    this.subscribtions.push(
+      interval(1000)
+        .pipe(
+          map(() => {
+            this.time = Date.now();
+          })
+        )
+        .subscribe()
+    );
+    this.subscribtions.push(
+      interval(1000 * 60 * 5)
+        .pipe(
+          map(() => {
+            this.onlineTime += 5;
+          })
+        )
+        .subscribe()
+    );
   }
 
   logout(): void {
-    console.log(ChatMessagesService.room.id, ChatMessagesService.room.name);
     this.localStorageService.deleteUserLoggedIn();
-    console.log(this.chatAPIService.user);
-    this.authService.logout(this.chatAPIService.user.username, ChatMessagesService.room.id, ChatMessagesService.room.name).subscribe(() => {
-    });
+    this.authService
+      .logout(
+        this.chatAPIService.user.username,
+        ChatMessagesService.room.id,
+        ChatMessagesService.room.name
+      )
+      .subscribe(() => {});
     window.location.reload();
   }
 
   submitForm(information: InfoAboutUser): void {
-    this.chatAPIService.postInfo(information).subscribe(() => {
-    });
+    this.chatAPIService.postInfo(information).subscribe(() => {});
     this.toggleChangeInfoWindow();
   }
 
@@ -68,12 +81,16 @@ export class HeaderChatRoomComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscribtions.forEach(subscribtion => subscribtion.unsubscribe());
+    this.subscribtions.forEach(subscribtion =>
+      subscribtion.unsubscribe()
+    );
   }
 
   get getUserAvatar(): string {
     if (!!this.chatAPIService.user.avatarId) {
-      return 'url(/assets/' + this.chatAPIService.user.avatarId + '.svg)';
+      return (
+        'url(/assets/' + this.chatAPIService.user.avatarId + '.svg)'
+      );
     }
   }
 }

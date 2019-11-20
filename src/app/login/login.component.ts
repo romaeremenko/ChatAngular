@@ -1,9 +1,9 @@
-import {Component, OnDestroy} from '@angular/core';
-import {AuthorizationUserService} from '../service/auth/authorization-user.service';
-import {Router} from '@angular/router';
-import {ChatService} from '../service/chatAPI/chat.service';
-import {Location} from '@angular/common';
-import {AuthService} from '../service/chatAPI/auth.service';
+import { Component, OnDestroy } from '@angular/core';
+import { AuthorizationUserService } from '../service/auth/authorization-user.service';
+import { Router } from '@angular/router';
+import { ChatService } from '../service/chatAPI/chat.service';
+import { Location } from '@angular/common';
+import { AuthService } from '../service/chatAPI/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,14 +15,14 @@ export class LoginComponent implements OnDestroy {
   user = {
     loginField: 'andreyyaz',
     passwordField: '1234'
-  }
+  };
 
   constructor(
     private authorizationUserService: AuthorizationUserService,
     private router: Router,
     private chatAPIService: ChatService,
-    private location: Location) {
-  }
+    private location: Location
+  ) {}
 
   redirectReg(): void {
     this.router.navigate([this.registration]);

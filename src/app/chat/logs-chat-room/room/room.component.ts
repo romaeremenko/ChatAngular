@@ -1,7 +1,7 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Chatroom} from '../../../interface/chat/chatroom';
-import {ChatMessagesService} from '../../../service/chatMessages/chat-messages.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Chatroom } from '../../../interface/chat/chatroom';
+import { ChatMessagesService } from '../../../service/chatMessages/chat-messages.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-room',
@@ -13,10 +13,11 @@ export class RoomComponent implements OnInit, OnDestroy {
   titleStyle = `containerName marginName name sairaRegular18`;
   private routeParams;
 
-  constructor(private chatMessagesService: ChatMessagesService,
-              private route: Router,
-              private activatedRoute: ActivatedRoute) {
-  }
+  constructor(
+    private chatMessagesService: ChatMessagesService,
+    private route: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.routeParams = this.activatedRoute.params.subscribe(() => {
@@ -27,21 +28,28 @@ export class RoomComponent implements OnInit, OnDestroy {
   setRouterLink(): void {
     const link = '../chatroom/' + this.room.name.split(' ').join('');
     if (this.room.name === 'Main') {
-      this.setRoom({chatroom_id: 'MAIN', chatroom_name: 'Main'});
+      this.setRoom({ chatroom_id: 'MAIN', chatroom_name: 'Main' });
     } else {
-      this.setRoom({chatroom_id: this.room.chatroom_id, chatroom_name: this.room.name});
+      this.setRoom({
+        chatroom_id: this.room.chatroom_id,
+        chatroom_name: this.room.name
+      });
     }
     this.route.navigate([link]);
     this.setActive(this.room.name);
   }
 
   setActive(chatName: string): void {
-    const arrayChats = document.getElementsByClassName(this.titleStyle);
+    const arrayChats = document.getElementsByClassName(
+      this.titleStyle
+    );
     Array.from(arrayChats).forEach((el: HTMLElement) => {
       if (chatName === el.innerText) {
-        el.parentElement.parentElement.className = 'alignLeft chatRoom active';
+        el.parentElement.parentElement.className =
+          'alignLeft chatRoom active';
       } else {
-        el.parentElement.parentElement.className = 'alignLeft chatRoom';
+        el.parentElement.parentElement.className =
+          'alignLeft chatRoom';
       }
     });
   }

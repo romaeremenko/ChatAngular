@@ -1,10 +1,8 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class LocalStorageService {
-
-  constructor() {
-  }
+  constructor() {}
 
   getUserLoggedIn() {
     return JSON.parse(localStorage.getItem('isUserLoggedIn'));

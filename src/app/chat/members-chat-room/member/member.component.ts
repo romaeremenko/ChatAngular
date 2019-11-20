@@ -1,6 +1,6 @@
-import {Component, Input, OnDestroy} from '@angular/core';
-import {Member} from '../../../interface/chat/member';
-import {ChatService} from '../../../service/chatAPI/chat.service';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { Member } from '../../../interface/chat/member';
+import { ChatService } from '../../../service/chatAPI/chat.service';
 
 @Component({
   selector: 'app-member',
@@ -14,14 +14,17 @@ export class MemberComponent implements OnDestroy {
   subscr;
   title = '';
 
-  constructor(private chatAPIService: ChatService) {
-  }
+  constructor(private chatAPIService: ChatService) {}
 
   submitForm(title: string): void {
-    this.subscr = this.chatAPIService.createChatRoom(this.member.username, title).subscribe(() => {
-    }, () => {
-      alert('Чат с пользователем уже существует');
-    });
+    this.subscr = this.chatAPIService
+      .createChatRoom(this.member.username, title)
+      .subscribe(
+        () => {},
+        () => {
+          alert('Чат с пользователем уже существует');
+        }
+      );
     this.toggleCreateRoom();
   }
 

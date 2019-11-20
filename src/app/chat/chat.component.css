@@ -6,6 +6,7 @@ p, div {
 body {
   margin: 0;
   height: 100%;
+  width: 100%;
   overflow: hidden;
   font-family: 'Saira', sans-serif;
 }
@@ -79,4 +80,229 @@ a {
 *:focus {
   outline: 0;
   outline: none;
+}
+
+.showChatsTab {
+  background: #ee5234;
+  display: block;
+  z-index: 4;
+  cursor: default;
+  outline: none;
+  border: none;
+  width: 90px;
+  height: inherit;
+}
+
+.showUsersTab {
+  cursor: default;
+  outline: none;
+  border: none;
+  justify-content: flex-end !important;
+}
+
+body .pi .pi-users {
+  font-size: large;
+}
+
+body .ui-sidebar .ui-sidebar-close {
+  width: 0;
+  height: 0;
+}
+
+.ui-sidebar-left {
+  width: inherit;
+}
+
+body .ui-sidebar {
+  padding: 0;
+  transition: none;
+}
+
+.ui-sidebar-active {
+  position: inherit;
+  width: auto;
+}
+
+.dateMessage {
+  width: 12%;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  margin: auto;
+  margin-top: 1vh;
+  border-radius: 10px;
+  background: #F17373;
+}
+
+.ui-lg-6 .dateMessage {
+  width: 15%;
+}
+
+.dateMessage p {
+  text-align: center;
+}
+
+.chatAvatar {
+  width: 7vh;
+  height: 7vh;
+  border-radius: 50%;
+  margin: 1%;
+  background-color: #F28E8E;
+}
+
+.ui-lg-6 .chatAvatar {
+  width: 5vh;
+  height: 5vh;
+}
+
+.characters {
+  margin-left: 1%;
+}
+
+.characters li {
+  color: rgba(0, 0, 0, .34);
+  margin: 0 0 0 5px;
+}
+
+body .pi .pi-bars {
+  color: white;
+  font-size: 2em;
+}
+
+
+.editing {
+  height: 40px;
+  width: 100%;
+  padding-top: 1%;
+  display: flex;
+  margin-left: 12%;
+}
+
+.editing form {
+  display: inline-flex;
+  margin-left: 1%;
+}
+
+.editing .bold {
+  background: url("../images/bold.svg") no-repeat;
+}
+
+.editing .italic {
+  background: url("../images/italic.svg") no-repeat;
+}
+
+.editing .underline {
+  background: url("../images/underline.svg") no-repeat;
+}
+
+.editing .bold,
+.editing .italic,
+.editing .underline {
+  margin-left: 5px;
+  width: 25px;
+  height: 17px;
+  cursor: default;
+  outline: none;
+  border: none;
+  background-color: inherit;
+  background-size: contain;
+}
+
+.editing img {
+  width: 2%;
+  height: 50%;
+  padding: 0 1%;
+}
+
+.ui-lg-6 .characters li,
+.ui-lg-9 .characters li,
+.ui-lg-12 .characters li{
+  margin: 0 0 0 5px;
+}
+
+.ui-lg-6 .editing,
+.ui-lg-6 .bold,
+.ui-lg-6 .italic,
+.ui-lg-6 .underline {
+  width: 13px;
+}
+
+@media screen {
+  .ui-g .ui-lg-1, .ui-lg-2, .ui-lg-3, .ui-lg-4, .ui-lg-5, .ui-lg-6, .ui-lg-7, .ui-lg-8, .ui-lg-9, .ui-lg-10, .ui-lg-11, .ui-lg-12 {
+    padding: 0;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .sairaLight14 {
+    font-size: .6em;
+  }
+
+  .sairaRegular18 {
+    font-size: 12px;
+  }
+
+  .showChatsTab {
+    width: 60px;
+  }
+
+  .characters {
+    display: block;
+    margin: 0 5px;
+    -webkit-transition: width 0.5s ease-in-out;
+    -moz-transition: width 0.5s ease-in-out;
+    -o-transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
+  }
+
+  .ui-lg-6 .chatAvatar {
+    display: none;
+  }
+
+  .ui-lg-9 .characters {
+    display: flex;
+    -webkit-transition: width 0.5s ease-in-out;
+    -moz-transition: width 0.5s ease-in-out;
+    -o-transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
+  }
+
+  .ui-lg-12 .characters {
+    display: flex;
+    -webkit-transition: width 0.5s ease-in-out;
+    -moz-transition: width 0.5s ease-in-out;
+    -o-transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
+  }
+
+  .inputMessage input {
+    height: 30px;
+  }
+
+  .inputMessage form {
+    margin-bottom: 2%;
+  }
+
+  .inputMessage .send {
+    padding: 0 5%;
+  }
+
+  .editing {
+    padding-top: 0;
+  }
+
+  .editing .bold,
+  .editing .italic,
+  .editing .underline {
+    width: 5px;
+  }
+
+  li {
+    font-size: 10px;
+  }
+
+  ul, li {
+    display: block;
+    margin: 0 5px;
+  }
 }

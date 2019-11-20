@@ -1,4 +1,4 @@
-import {Chatroom} from './chatroom';
+import { Chatroom } from './chatroom';
 
 export interface User {
   user_id: string;
