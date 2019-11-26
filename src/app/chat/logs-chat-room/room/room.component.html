@@ -1,4 +1,4 @@
-<div (click)="setRouterLink()" class="alignLeft chatRoom">
+<div (click)="setRouterLink()" (click)="isPhone.value ? this.showTabsService.setDisplayChats() : false" class="alignLeft chatRoom">
   <div class="containerForProfile alignCenter">
     <div class="containerForAvatar alignCenter">
       <div class="avatar avatarProfileTab"><p>{{room.name.substr(0,1)}}</p></div>

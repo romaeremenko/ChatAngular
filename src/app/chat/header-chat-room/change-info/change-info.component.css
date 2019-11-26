@@ -144,3 +144,17 @@ input[type=number] {
 .active {
   border: 5px solid #80b928;
 }
+
+@media screen and (max-width: 425px) {
+  #prompt-form {
+    display: block;
+    border-radius: 0;
+    width: inherit;
+    height: inherit;
+  }
+
+  #prompt-form-container {
+    position: absolute;
+    top: 0;
+  }
+}

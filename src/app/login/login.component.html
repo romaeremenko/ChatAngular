@@ -4,7 +4,7 @@
     <form action="">
       <input type="text" [(ngModel)]="user.loginField" [ngModelOptions]="{standalone: true}" class="inputname" placeholder="Логин">
       <input type="text" [(ngModel)]="user.passwordField" [ngModelOptions]="{standalone: true}" class="inputname" placeholder="Пароль">
-      <button type="button" (click)="authorizationUserService.login(user)">Вход</button>
+      <button type="button" id="login" (click)="authorizationUserService.login(user)">Вход</button>
       <button type="button" (click)="redirectReg()" id="buttonReg">Регистрация</button>
       <p id="check">{{authorizationUserService.responce}}</p>
     </form>

@@ -1,5 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { ShowTabsService } from '../service/showTabs/show-tabs.service';
+import {Component, ViewEncapsulation} from '@angular/core';
+import {ShowTabsService} from '../service/showTabs/show-tabs.service';
+import {PhoneViewService} from "../service/phoneView/phone-view.service";
 
 @Component({
   selector: 'app-chat',
@@ -8,5 +9,6 @@ import { ShowTabsService } from '../service/showTabs/show-tabs.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ChatComponent {
-  constructor(public showTabsService: ShowTabsService) {}
+  constructor(public showTabsService: ShowTabsService,
+              public phoneViewService: PhoneViewService) {}
 }

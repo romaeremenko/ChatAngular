@@ -100,6 +100,13 @@ a {
   justify-content: flex-end !important;
 }
 
+.showChatLog {
+  cursor: default;
+  outline: none;
+  border: none;
+  justify-content: flex-start !important;
+}
+
 body .pi .pi-users {
   font-size: large;
 }
@@ -226,6 +233,10 @@ body .pi .pi-bars {
   width: 13px;
 }
 
+.ui-sidebar-left.ui-sidebar-active, .ui-sidebar-right.ui-sidebar-active {
+  display: contents;
+}
+
 @media screen {
   .ui-g .ui-lg-1, .ui-lg-2, .ui-lg-3, .ui-lg-4, .ui-lg-5, .ui-lg-6, .ui-lg-7, .ui-lg-8, .ui-lg-9, .ui-lg-10, .ui-lg-11, .ui-lg-12 {
     padding: 0;
@@ -306,3 +317,24 @@ body .pi .pi-bars {
     margin: 0 5px;
   }
 }
+
+@media screen and (max-width: 425px) {
+  .dateMessage {
+    width: 21%;
+  }
+
+  .chatAvatar {
+    width: 5vh;
+    height: 5vh;
+  }
+
+  .ui-sm-12 .characters {
+    display: block;
+    transition: width 0.5s ease-in-out;
+  }
+
+  .editing form {
+    margin-top: 2px;
+  }
+}
+

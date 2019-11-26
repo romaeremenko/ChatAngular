@@ -13,6 +13,7 @@ import { ChatRoomsService } from '../service/chatRooms/chat-rooms.service';
 import { ChatMessagesService } from '../service/chatMessages/chat-messages.service';
 import { RedirectToChatService } from '../service/auth/redirect-to-chat.service';
 import { ShowTabsService } from '../service/showTabs/show-tabs.service';
+import {PhoneViewService} from "../service/phoneView/phone-view.service";
 
 @NgModule({
   declarations: [],
@@ -35,7 +36,8 @@ export class SharedModule {
         LocalStorageService,
         AuthService,
         RedirectToChatService,
-        ShowTabsService
+        ShowTabsService,
+        PhoneViewService
       ]
     };
   }

@@ -64,3 +64,9 @@
   font-size: 1em;
   color: #000000;
 }
+
+@media screen and (max-width: 425px) {
+  .boxForMessage {
+    width: 85%;
+  }
+}

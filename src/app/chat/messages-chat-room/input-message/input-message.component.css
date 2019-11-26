@@ -61,6 +61,16 @@ ul, li {
   font-size: smaller;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 425px) {
+  .inputMessage input {
+    height: 30px;
+  }
 
+  .inputMessage form {
+    height: 30px;
+  }
+
+  .inputMessage .send {
+    padding: 0 5%;
+  }
 }

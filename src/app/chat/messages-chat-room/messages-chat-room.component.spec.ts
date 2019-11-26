@@ -12,7 +12,7 @@ describe('MessagesChatRoomComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MessagesChatRoomComponent]
+      declarations: [MessagesChatRoomComponent],
     }).compileComponents();
   }));
 
@@ -25,4 +25,11 @@ describe('MessagesChatRoomComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // it('should count click', () => {
+  //   // получаем div, для которого мы ставим директиву appCountClick
+  //   let div = fixture.nativeElement.querySelector('button');
+  //   div.click();
+  //   expect(component.fff).toBe(true);
+  // });
 });

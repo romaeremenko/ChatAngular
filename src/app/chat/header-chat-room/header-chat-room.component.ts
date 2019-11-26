@@ -7,6 +7,8 @@ import { InfoAboutUser } from '../../interface/chat/infoAboutUser';
 import { LocalStorageService } from '../../service/localStorage/local-storage.service';
 import { AuthService } from '../../service/chatAPI/auth.service';
 import { ShowTabsService } from '../../service/showTabs/show-tabs.service';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import {PhoneViewService} from "../../service/phoneView/phone-view.service";
 
 @Component({
   selector: 'app-header-chat-room',
@@ -24,7 +26,8 @@ export class HeaderChatRoomComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private chatMessagesService: ChatMessagesService,
     private localStorageService: LocalStorageService,
-    private showTabsService: ShowTabsService
+    private showTabsService: ShowTabsService,
+    private phoneViewService: PhoneViewService
   ) {}
 
   ngOnInit() {
@@ -51,11 +54,7 @@ export class HeaderChatRoomComponent implements OnInit, OnDestroy {
   logout(): void {
     this.localStorageService.deleteUserLoggedIn();
     this.authService
-      .logout(
-        this.chatAPIService.user.username,
-        ChatMessagesService.room.id,
-        ChatMessagesService.room.name
-      )
+      .logout(this.chatAPIService.user.username, ChatMessagesService.room.id, ChatMessagesService.room.name)
       .subscribe(() => {});
     window.location.reload();
   }
@@ -81,16 +80,12 @@ export class HeaderChatRoomComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscribtions.forEach(subscribtion =>
-      subscribtion.unsubscribe()
-    );
+    this.subscribtions.forEach(subscribtion => subscribtion.unsubscribe());
   }
 
   get getUserAvatar(): string {
     if (!!this.chatAPIService.user.avatarId) {
-      return (
-        'url(/assets/' + this.chatAPIService.user.avatarId + '.svg)'
-      );
+      return 'url(/assets/' + this.chatAPIService.user.avatarId + '.svg)';
     }
   }
 }

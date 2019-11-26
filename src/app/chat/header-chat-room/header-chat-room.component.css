@@ -26,10 +26,8 @@
 
 .avatar {
   position: relative;
-  max-width: 60px;
-  min-width: 60px;
-  max-height: 60px;
-  min-height: 60px;
+  width: 60px;
+  height: 60px;
   -webkit-border-radius: 38px;
   -moz-border-radius: 38px;
   border-radius: 38px;
@@ -158,3 +156,37 @@
   }
 }
 
+@media screen and (max-width: 425px) {
+  .account {
+    padding: 0;
+    width: auto;
+    margin: auto;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .header {
+    background: #FFA528;
+  }
+
+  .exit {
+    width: 10%;
+    height: 7vh;
+  }
+}
+
+@media screen and (max-width: 320px){
+  .exit {
+    margin-top: 1.8vh;
+    margin-right: 3vh;
+    width: 10%;
+    height: 6vh;
+  }
+
+  #time {
+    display: none;
+  }
+}

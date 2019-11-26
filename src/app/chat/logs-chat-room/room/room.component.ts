@@ -2,6 +2,9 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Chatroom } from '../../../interface/chat/chatroom';
 import { ChatMessagesService } from '../../../service/chatMessages/chat-messages.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { ShowTabsService } from '../../../service/showTabs/show-tabs.service';
+import {PhoneViewService} from "../../../service/phoneView/phone-view.service";
 
 @Component({
   selector: 'app-room',
@@ -12,12 +15,17 @@ export class RoomComponent implements OnInit, OnDestroy {
   @Input() room: Chatroom;
   titleStyle = `containerName marginName name sairaRegular18`;
   private routeParams;
+  private isPhone;
 
   constructor(
     private chatMessagesService: ChatMessagesService,
     private route: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute,
+    private showTabsService: ShowTabsService,
+    private phoneViewService: PhoneViewService
+  ) {
+    this.isPhone = this.phoneViewService.getIsPhone();
+  }
 
   ngOnInit() {
     this.routeParams = this.activatedRoute.params.subscribe(() => {
@@ -40,16 +48,12 @@ export class RoomComponent implements OnInit, OnDestroy {
   }
 
   setActive(chatName: string): void {
-    const arrayChats = document.getElementsByClassName(
-      this.titleStyle
-    );
+    const arrayChats = document.getElementsByClassName(this.titleStyle);
     Array.from(arrayChats).forEach((el: HTMLElement) => {
       if (chatName === el.innerText) {
-        el.parentElement.parentElement.className =
-          'alignLeft chatRoom active';
+        el.parentElement.parentElement.className = 'alignLeft chatRoom active';
       } else {
-        el.parentElement.parentElement.className =
-          'alignLeft chatRoom';
+        el.parentElement.parentElement.className = 'alignLeft chatRoom';
       }
     });
   }
