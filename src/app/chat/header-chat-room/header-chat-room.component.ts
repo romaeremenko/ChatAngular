@@ -60,7 +60,7 @@ export class HeaderChatRoomComponent implements OnInit, OnDestroy {
   }
 
   submitForm(information: InfoAboutUser): void {
-    this.chatAPIService.postInfo(information).subscribe(() => {});
+    this.chatAPIService.postInfo(information).subscribe((f) => {console.log(f)});
     this.toggleChangeInfoWindow();
   }
 

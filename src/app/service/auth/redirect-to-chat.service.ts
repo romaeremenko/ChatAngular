@@ -25,7 +25,7 @@ export class RedirectToChatService {
   }
 
   public redirectTo(
-    resp: UserResponce,
+    resp,
     loginField: string,
     passwordField: string,
     roomName: string

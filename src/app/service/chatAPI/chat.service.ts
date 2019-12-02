@@ -7,19 +7,11 @@ import { Message } from '../../interface/chat/message';
 import { Chatroom } from '../../interface/chat/chatroom';
 import { InfoAboutUser } from '../../interface/chat/infoAboutUser';
 import { MessageResponce } from '../../interface/server/messageResponce';
+import {CreateUser} from "../../class/create-user";
 
 @Injectable()
 export class ChatService {
-  user: User = {
-    user_id: '',
-    username: '',
-    avatarId: '',
-    set info(resp: UserResponce) {
-      this.user_id = resp.user_id;
-      this.username = resp.username;
-      this.avatarId = resp.avatarId;
-    }
-  };
+  user = new CreateUser('','','');
   usersAvatars = {};
   userInfo: InfoAboutUser;
   currentRoom;

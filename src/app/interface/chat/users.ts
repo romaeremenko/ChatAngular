@@ -1,8 +1,8 @@
 import { Chatroom } from './chatroom';
 
 export interface User {
-  user_id: string;
-  username: string;
+  user_id?: string;
+  username?: string;
   avatarId?: string;
   password?: string;
   status?: string;

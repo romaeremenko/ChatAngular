@@ -18,9 +18,10 @@ export class AuthorizationUserService {
     private redirectToChatService: RedirectToChatService
   ) {}
 
-  login({ loginField, passwordField }): void {
+  login({ loginField, passwordField }): any {
     this.authService.isExist(loginField, passwordField).subscribe(
       (resp: UserResponce) => {
+        console.log(resp);
         this.redirectToChatService.redirectTo(
           resp,
           loginField,
