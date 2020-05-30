@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {ChatRoomsService} from '../../service/chatRooms/chat-rooms.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ChatRoomsService } from '../../service/chatRooms/chat-rooms.service';
 
 @Component({
   selector: 'app-logs-chat-room',
@@ -13,8 +13,10 @@ export class LogsChatRoomComponent implements OnInit, OnDestroy {
 
   titleStyle = `containerName marginName name sairaRegular18`;
 
-  constructor(private route: ActivatedRoute, private chatRoomsService: ChatRoomsService) {
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private chatRoomsService: ChatRoomsService
+  ) {}
 
   ngOnInit() {
     this.logs = this.chatRoomsService.getChats();

@@ -1,19 +1,37 @@
-import {Injectable} from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
-import {AuthService} from './service/auth/auth.service';
+import { Injectable } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  CanLoad,
+  Route,
+  Router,
+  RouterStateSnapshot
+} from '@angular/router';
+import { AuthorizationUserService } from './service/auth/authorization-user.service';
+import { LocalStorageService } from './service/localStorage/local-storage.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService) {
+@Injectable()
+export class AuthGuard implements CanLoad, CanActivate {
+  constructor(
+    private authorizationUserService: AuthorizationUserService,
+    private localStorageService: LocalStorageService,
+    private router: Router
+  ) {
+    const data = this.localStorageService.getUserLoggedIn();
+    if (!!data) {
+      this.authorizationUserService.login(data);
+      this.authorizationUserService.isAuth = true;
+    }
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-    if (this.authService.isAuth) {
-      return false;
-    }
+  canLoad(route: Route): any {
+    return !this.authorizationUserService.isAuth;
+  }
 
-    return true;
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): any {
+    return !this.authorizationUserService.isAuth;
   }
 }

@@ -8,10 +8,8 @@
 
 .avatar {
   position: relative;
-  max-width: 60px;
-  min-width: 60px;
-  max-height: 60px;
-  min-height: 60px;
+  width: 60px;
+  height: 60px;
   -webkit-border-radius: 38px;
   -moz-border-radius: 38px;
   border-radius: 38px;
@@ -22,4 +20,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .alignCenter {
+    width: min-content;
+  }
+
+  .avatar {
+    padding: 0 5px;
+    width: 30px;
+    height: 30px;
+  }
 }

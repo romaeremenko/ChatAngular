@@ -1,4 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed
+} from '@angular/core/testing';
 
 import { MembersChatRoomComponent } from './members-chat-room.component';
 
@@ -8,9 +12,8 @@ describe('MembersChatRoomComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MembersChatRoomComponent ]
-    })
-    .compileComponents();
+      declarations: [MembersChatRoomComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

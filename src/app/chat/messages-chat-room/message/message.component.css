@@ -9,14 +9,6 @@
   /* padding: 10px; */
 }
 
-.chatAvatar {
-  width: 7vh;
-  height: 7vh;
-  border-radius: 50%;
-  margin: 1%;
-  background-color: #F28E8E;
-}
-
 .boxForMessage {
   width: 90%;
   margin: auto 0;
@@ -52,20 +44,6 @@
   align-items: flex-start;
 }
 
-.dateMessage {
-  width: 12%;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  margin: auto;
-  margin-top: 1vh;
-  border-radius: 10px;
-  background: #F17373;
-}
-
-.dateMessage p {
-  text-align: center;
-}
-
 .boxForMessageSelf {
   order: -1;
   text-align: right;
@@ -85,4 +63,10 @@
   /*margin-left: 1%;*/
   font-size: 1em;
   color: #000000;
+}
+
+@media screen and (max-width: 425px) {
+  .boxForMessage {
+    width: 85%;
+  }
 }

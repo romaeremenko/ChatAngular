@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-avatar',
@@ -7,12 +7,6 @@ import {Component, Input} from '@angular/core';
 })
 export class AvatarComponent {
   @Input() avatar: string;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
   get getUserAvatar(): string {
     if (!!this.avatar) {

@@ -1,7 +1,10 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Chatroom} from '../../../interface/chat/chatroom';
-import {ChatMessagesService} from '../../../service/chatMessages/chat-messages.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Chatroom } from '../../../interface/chat/chatroom';
+import { ChatMessagesService } from '../../../service/chatMessages/chat-messages.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { ShowTabsService } from '../../../service/showTabs/show-tabs.service';
+import {PhoneViewService} from "../../../service/phoneView/phone-view.service";
 
 @Component({
   selector: 'app-room',
@@ -12,10 +15,16 @@ export class RoomComponent implements OnInit, OnDestroy {
   @Input() room: Chatroom;
   titleStyle = `containerName marginName name sairaRegular18`;
   private routeParams;
+  private isPhone;
 
-  constructor(private chatMessagesService: ChatMessagesService,
-              private route: Router,
-              private activatedRoute: ActivatedRoute) {
+  constructor(
+    private chatMessagesService: ChatMessagesService,
+    private route: Router,
+    private activatedRoute: ActivatedRoute,
+    private showTabsService: ShowTabsService,
+    private phoneViewService: PhoneViewService
+  ) {
+    this.isPhone = this.phoneViewService.getIsPhone();
   }
 
   ngOnInit() {
@@ -27,9 +36,12 @@ export class RoomComponent implements OnInit, OnDestroy {
   setRouterLink(): void {
     const link = '../chatroom/' + this.room.name.split(' ').join('');
     if (this.room.name === 'Main') {
-      this.setRoom({chatroom_id: 'MAIN', chatroom_name: 'Main'});
+      this.setRoom({ chatroom_id: 'MAIN', chatroom_name: 'Main' });
     } else {
-      this.setRoom({chatroom_id: this.room.chatroom_id, chatroom_name: this.room.name});
+      this.setRoom({
+        chatroom_id: this.room.chatroom_id,
+        chatroom_name: this.room.name
+      });
     }
     this.route.navigate([link]);
     this.setActive(this.room.name);

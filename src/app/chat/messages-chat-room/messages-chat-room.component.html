@@ -3,10 +3,11 @@
     <div class="chatName sairaRegular18">
       {{chatroomNameHeader}}
     </div>
+    <button (click)="showMembers()" class="showUsersTab"><i class="pi pi-users"></i></button>
   </div>
   <div id="messages">
     <div #messagesRef class="chatLogs scroll">
-      <ng-container *ngFor="let message of messages | async">
+      <ng-container *ngFor="let message of messages | async; trackBy: trackByIndex">
         <div (resized)="onResized($event)">
           <app-message [messageFromUser]="message"></app-message>
         </div>

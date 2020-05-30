@@ -1,4 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed
+} from '@angular/core/testing';
 
 import { MessagesChatRoomComponent } from './messages-chat-room.component';
 
@@ -8,9 +12,8 @@ describe('MessagesChatRoomComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MessagesChatRoomComponent ]
-    })
-    .compileComponents();
+      declarations: [MessagesChatRoomComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,4 +25,11 @@ describe('MessagesChatRoomComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // it('should count click', () => {
+  //   // получаем div, для которого мы ставим директиву appCountClick
+  //   let div = fixture.nativeElement.querySelector('button');
+  //   div.click();
+  //   expect(component.fff).toBe(true);
+  // });
 });
