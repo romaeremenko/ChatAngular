@@ -10,8 +10,8 @@ import { AuthService } from '../../service/chatAPI/auth.service';
 })
 export class RegistrationComponent implements OnDestroy {
   private login = '/login';
-  private loginField = 'andreyyaz';
-  private passwordField = '1234';
+  private loginField = '';
+  private passwordField = '';
 
   constructor(
     private authorizationUserService: AuthorizationUserService,

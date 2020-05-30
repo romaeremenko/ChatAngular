@@ -11,8 +11,8 @@ import { Location } from '@angular/common';
 export class LoginComponent implements OnDestroy {
   private registration = '/registration';
   user = {
-    loginField: 'andreyyaz',
-    passwordField: '1234'
+    loginField: '',
+    passwordField: ''
   };
 
   constructor(

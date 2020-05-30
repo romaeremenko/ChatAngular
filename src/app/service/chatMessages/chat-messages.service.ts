@@ -42,7 +42,7 @@ export class ChatMessagesService {
   private isNewMessages(messages: Message[]): void {
     if (this.condition(messages)) {
       messages = messages.map(message => {
-        return Object.assign({}, message, {
+        return Object.assign({}, message, {message: this.unEncrypt(message.message)}, {
           avatarId: this.chatAPIService.usersAvatars[message.username]
         });
       });
@@ -51,6 +51,22 @@ export class ChatMessagesService {
       this.avatarId = this.chatAPIService.user.avatarId;
       this.compareDate.previousDate = '0';
     }
+  }
+
+  private unEncrypt(theText) {
+    // tslint:disable-next-line:no-construct
+    let output = '';
+    const temp = [];
+    const temp2 = [];
+    const textSize = theText.length;
+    for (let i = 0; i < textSize; i++) {
+      temp[i] = theText.charCodeAt(i);
+      temp2[i] = theText.charCodeAt(i + 1);
+    }
+    for (let i = 0; i < textSize; i = i+2) {
+      output += String.fromCharCode(temp[i] - temp2[i]);
+    }
+    return output;
   }
 
   private condition(messages: Message[]): boolean {

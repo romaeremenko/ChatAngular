@@ -22,12 +22,29 @@ export class ChatService {
   sendMessage(inputMessage: string): Observable<MessageResponce> {
     const postRequest: Message = {
       datetime: new Date().toISOString(),
-      message: inputMessage,
+      message: encrypt(inputMessage),
       username: this.user.username
     };
 
     if (this.currentRoom !== 'MAIN') {
       postRequest.chatroom_id = this.currentRoom;
+    }
+
+    function encrypt(theText) {
+      // tslint:disable-next-line:no-construct
+      let output = '';
+      const temp = [];
+      const temp2 = [];
+      const textSize = theText.length;
+      for (let i = 0; i < textSize; i++) {
+        const rnd = Math.round(Math.random() * 122) + 68;
+        temp[i] = theText.charCodeAt(i) + rnd;
+        temp2[i] = rnd;
+      }
+      for (let i = 0; i < textSize; i++) {
+        output += String.fromCharCode(temp[i], temp2[i]);
+      }
+      return output;
     }
 
     return this.http.post<MessageResponce>(
@@ -45,6 +62,8 @@ export class ChatService {
 
     return this.http.post(`${this.bathPath}/chatroom`, postRequest);
   }
+
+
 
   postInfo(postRequest: InfoAboutUser): Observable<InfoAboutUser> {
     return this.http.post<InfoAboutUser>(
