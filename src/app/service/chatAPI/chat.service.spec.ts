@@ -6,7 +6,7 @@ import {User} from "../../interface/chat/users";
 import {InfoAboutUser} from "../../interface/chat/infoAboutUser";
 import {Message} from "../../interface/chat/message";
 
-fdescribe('ChatService', () => {
+describe('ChatService', () => {
   let injector: TestBed;
   let service: ChatService;
   let httpMock: HttpTestingController;

@@ -15,8 +15,7 @@ export class AuthService {
     password: string
   ): Observable<UserResponce> | Observable<object> {
     return this.http
-      .post(`${this.bathPath}/users/login`, { username, password })
-      .pipe(map(user => user[0]));
+      .post(`${this.bathPath}/users/login`, { username, password });
   }
 
   logout(

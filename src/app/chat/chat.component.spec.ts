@@ -11,7 +11,7 @@ import {By} from "@angular/platform-browser";
 import {ShowTabsService} from "../service/showTabs/show-tabs.service";
 import {PhoneViewService} from "../service/phoneView/phone-view.service";
 
-fdescribe('ChatComponent', () => {
+describe('ChatComponent', () => {
   let component: ChatComponent;
   let fixture: ComponentFixture<ChatComponent>;
   let el;
